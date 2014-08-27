@@ -1,0 +1,89 @@
+<html>
+  <head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+  <script type="text/javascript" src="cpu_65816.js"></script>
+  <script type="text/javascript" src="snes.js"></script>
+  <script type="text/javascript">
+    var snes = new Snes()
+    snes.insertRomAndPlay('mario.smc')
+
+    setInterval(function(){
+      $("#registerA").text(snes.cpu.r.a.toString(16));
+      $("#registerB").text(snes.cpu.r.b.toString(16));
+      $("#registerX").text(snes.cpu.r.x.toString(16));
+      $("#registerY").text(snes.cpu.r.y.toString(16));
+      $("#registerD").text(snes.cpu.r.d.toString(16));
+      $("#registerS").text(snes.cpu.r.s.toString(16));
+      $("#registerPC").text(snes.cpu.r.pc.toString(16));
+      $("#registerDBR").text(snes.cpu.r.dbr.toString(16));
+      $("#registerK").text(snes.cpu.r.k.toString(16));
+      $("#registerPFlagE").text(snes.cpu.p.e);
+      $("#registerPFlagC").text(snes.cpu.p.c);
+      $("#registerPFlagZ").text(snes.cpu.p.z);
+      $("#registerPFlagI").text(snes.cpu.p.i);
+      $("#registerPFlagD").text(snes.cpu.p.d);
+      $("#registerPFlagX").text(snes.cpu.p.x);
+      $("#registerPFlagM").text(snes.cpu.p.m);
+      $("#registerPFlagV").text(snes.cpu.p.v);
+      $("#registerPFlagN").text(snes.cpu.p.n);
+    }, 100)
+  </script>
+  </head>
+  <body>
+
+</script>
+<style>
+.row {
+  width:100%;
+  float:left;
+}
+.label {
+  float:left;
+  width:40px;
+}
+.value {
+  float:left;
+}
+.left { 
+  float:left;
+  width:50%;
+}
+.right {
+  float:left;
+  width:50%;
+}
+#hex {
+  height:140px;
+  width:400px;
+}
+</style>
+<body>
+<div class="left">
+<div class="left">
+<h3>Registers</h3>
+<div class="row"><div class="label">a</div><div id="registerA" class="value"></div></div>
+<div class="row"><div class="label">b</div><div id="registerB" class="value"></div></div>
+<div class="row"><div class="label">x</div><div id="registerX" class="value"></div></div>
+<div class="row"><div class="label">y</div><div id="registerY" class="value"></div></div>
+<div class="row"><div class="label">d</div><div id="registerD" class="value"></div></div>
+<div class="row"><div class="label">s</div><div id="registerS" class="value"></div></div>
+<div class="row"><div class="label">pc</div><div id="registerPC" class="value"></div></div>
+<div class="row"><div class="label">dbr</div><div id="registerDBR" class="value"></div></div>
+<div class="row"><div class="label">k</div><div id="registerK" class="value"></div></div>
+</div>
+<div class="right">
+<h3>P Register Flags</h3>
+<div class="row"><div class="label">e</div><div id="registerPFlagE" class="value"></div></div>
+<div class="row"><div class="label">c</div><div id="registerPFlagC" class="value"></div></div>
+<div class="row"><div class="label">z</div><div id="registerPFlagZ" class="value"></div></div>
+<div class="row"><div class="label">i</div><div id="registerPFlagI" class="value"></div></div>
+<div class="row"><div class="label">d</div><div id="registerPFlagD" class="value"></div></div>
+<div class="row"><div class="label">x</div><div id="registerPFlagX" class="value"></div></div>
+<div class="row"><div class="label">m</div><div id="registerPFlagM" class="value"></div></div>
+<div class="row"><div class="label">v</div><div id="registerPFlagV" class="value"></div></div>
+<div class="row"><div class="label">n</div><div id="registerPFlagN" class="value"></div></div>
+</div>
+</div>
+    
+  </body>  
+</html>  
