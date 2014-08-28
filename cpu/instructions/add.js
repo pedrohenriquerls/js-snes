@@ -8,11 +8,6 @@
 * Add with Carry from Accumulator Immediate
 * 0x69
 */ 
-/*public int argCount;
-	public Size size;
-	public AddressingMode addrMode;
-	public String name = "UNKNOWN";
-	public String mnemonic = "XXX";*/
 function _addImediate(){
 	this.name = "Add with Carry from Accumulator Immediate"
 	this.argCount = 0;
