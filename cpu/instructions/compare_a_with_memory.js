@@ -6,9 +6,6 @@ import edu.fit.cs.sno.snes.cpu.AddressingMode;
 import edu.fit.cs.sno.snes.cpu.CPU;
 import edu.fit.cs.sno.util.Util;*/
 
-public class 
-	public static final String mnemonic = "CMP";
-
 	/**
 	 * Compare A with Memory Direct Page Indexed Indirect X
 	 * 0xC1
