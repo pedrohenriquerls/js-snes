@@ -76,7 +76,7 @@ _incAbsolute.prototype.run = function(args){
 	CPU.status.setNegative(CPU.dataReg.isNegative());
 	CPU.status.setZero(CPU.dataReg.getValue() == 0);
 	
-	int cycles = 6;
+	var cycles = 6;
 	if(!CPU.status.isMemoryAccess())
 		cycles += 2;
 	return cycles;
