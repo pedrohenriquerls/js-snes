@@ -1,6 +1,6 @@
-function _addressingMode(numArgs, load = true, save = false){
+function _addressingMode(numArgs, load, save){
 	this.numArgs = numArgs
-	this.load = load
+	this.load = load === undefined ? true : load
 }
 
 _addressingMode.prototype = {
@@ -40,5 +40,5 @@ AddressingMode = {
 	PROGRAM_COUNTER_RELATIVE_LONG: new _addressingMode(2),
 	STACK_RELATIVE: new _addressingMode(1),
 	STACK_RELATIVE_INDIRECT_INDEXED_Y: new _addressingMode(1),
-	BLOCK_MOVE: new _addressingMode(2);
+	BLOCK_MOVE: new _addressingMode(2)
 }

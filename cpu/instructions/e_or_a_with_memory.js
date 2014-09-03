@@ -1,12 +1,4 @@
-/*package edu.fit.cs.sno.snes.cpu.instructions;
 
-import edu.fit.cs.sno.snes.common.Instruction;
-import edu.fit.cs.sno.snes.common.Size;
-import edu.fit.cs.sno.snes.cpu.AddressingMode;
-import edu.fit.cs.sno.snes.cpu.CPU;
-
-public class 
-	public static final String mnemonic = "EOR";
 	/**
 	 * EOR Accumulator with Memory DP Indexed Indirect, X
 	 * 0x41
@@ -329,7 +321,7 @@ _eorAMemAbsoluteY.prototype.run = function(args){
 	CPU.status.setNegative(CPU.a.isNegative());
 	CPU.status.setZero(CPU.a.getValue() == 0);
 	
-	int cycles = 4;
+	var cycles = 4;
 	if (!CPU.status.isMemoryAccess())
 		cycles++;
 	if (CPU.indexCrossedPageBoundary)

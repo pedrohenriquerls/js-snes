@@ -1,4 +1,4 @@
-//import size
+
 function Register(size, val) {
 	this.val = val
 	this.size = size;
@@ -46,7 +46,7 @@ Register.prototype = {
 		this.setValue(this.val + add);
 	},
 	
-	subtract: fucntion(sub) {
+	subtract: function(sub) {
 		this.setValue(this.val - sub);
 	},
 	

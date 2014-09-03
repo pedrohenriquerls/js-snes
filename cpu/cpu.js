@@ -494,7 +494,7 @@ CPU.cycle = function() {
 	
 	// Grab arguments
 	if (args.length > 0) {
-		for (int k = 0; k < args.length; k++) {
+		for (var k = 0; k < args.length; k++) {
 			args[k] = Core.mem.read(Size.BYTE, CPU.pbr.getValue(), CPU.pc.getValue());
 			CPU.pc.add(1);
 		}
@@ -755,7 +755,7 @@ CPU.stackPull = function(size) {
  * @param size Size of value to peek
  * @return Value at the top of the stack
  */
-CPU.stackPeek = function(Size size) {
+CPU.stackPeek = function(size) {
 	return Core.mem.read(size.getRealSize(), 0, CPU.sp.getValue() + 1);
 }
 
@@ -778,7 +778,7 @@ CPU.resetVectorInit = function() {
 	CPU.emulationMode = true; // Emulation flag = 1
 	
 	// Follow reset vector
-	int reset = Core.mem.read(Size.SHORT, 0, 0xFFFC);
+	var reset = Core.mem.read(Size.SHORT, 0, 0xFFFC);
 	//Log.debug(String.format("Reset Vector: 0x%04x\n", reset & 0xFFFF));
 	CPU.pc.setValue(reset & 0xFFFF);
 }
@@ -797,7 +797,7 @@ CPU.resetVectorInit = function() {
 	
 	var strArgs = []//new String[args.length];
 	if (args.length > 0) {
-		for (int k = 0; k < args.length; k++) {
+		for (var k = 0; k < args.length; k++) {
 			strArgs[k] = args[k].toString(16)//Integer to hex;
 			if (strArgs[k].length()==1) {
 				strArgs[k] = '0'+strArgs[k];
@@ -814,7 +814,7 @@ CPU.resetVectorInit = function() {
 			case IMMEDIATE_MEMORY:
 			case IMMEDIATE_INDEX:
 				argsString = "#$";
-				for (int i = strArgs.length-1;i>=0;i--) {
+				for (var i = strArgs.length-1;i>=0;i--) {
 					argsString += strArgs[i];
 				}
 				break;
@@ -828,7 +828,7 @@ CPU.resetVectorInit = function() {
 				{
 					argsString = "#$";
 					if (opcode == 0xF4 || opcode==0x62) argsString = "$"; // PEA doesn't have a hash
-					for (int i = strArgs.length-1;i>=0;i--) {
+					for (var i = strArgs.length-1;i>=0;i--) {
 						argsString += strArgs[i];
 					}
 					if (opcode == 0x62) { // PEA needs a special case here
@@ -840,14 +840,14 @@ CPU.resetVectorInit = function() {
 				break;
 			
 			case DIRECT_PAGE_INDEXED_INDIRECT_LONG_Y:
-				int indirectAddr, directAddr;
+				var indirectAddr, directAddr;
 				indirectAddr = Util.limitShort(CPU.dp.getValue() + args[0]);
 
 				directAddr = Core.mem.get(Size.SHORT, 0, indirectAddr);
 				directAddr += (Core.mem.get(Size.BYTE, 0, Util.limitShort(indirectAddr + 2)) << 16);
 				directAddr += CPU.y.getValue();
-				int dataBank = (directAddr & 0xFF0000) >> 16;
-				int dataAddr = directAddr & 0xFFFF;
+				var dataBank = (directAddr & 0xFF0000) >> 16;
+				var dataAddr = directAddr & 0xFFFF;
 				
 				argsString = "[$"+strArgs[0].toUpperCase()+"],y"+ String.format("[$%02X:%04X]", dataBank, dataAddr);
 				argsCap = false;	
@@ -862,27 +862,27 @@ CPU.resetVectorInit = function() {
 				argsCap = false;
 				break;
 			case DIRECT_PAGE_INDIRECT_LONG:
-				int iaddr = Util.limitShort(CPU.dp.getValue() + args[0]);
-				int datadpBank = Core.mem.get(Size.BYTE, 0, Util.limitShort(iaddr + 2));
-				int datadpAddr = Core.mem.get(Size.SHORT, 0, iaddr);
+				var iaddr = Util.limitShort(CPU.dp.getValue() + args[0]);
+				var datadpBank = Core.mem.get(Size.BYTE, 0, Util.limitShort(iaddr + 2));
+				var datadpAddr = Core.mem.get(Size.SHORT, 0, iaddr);
 				argsString = String.format("[$%02X]  [$%02X:%04X]",args[0],datadpBank,datadpAddr);
 				break;
 			case ABSOLUTE_LONG_INDEXED_X:{
-				int tDataBank = args[2];
-				int tDataAddr = Util.limitShort(((args[1] << 8) + args[0]) + CPU.x.getValue());
+				var tDataBank = args[2];
+				var tDataAddr = Util.limitShort(((args[1] << 8) + args[0]) + CPU.x.getValue());
 				argsString = "$"+strArgs[2].toUpperCase() + strArgs[1].toUpperCase() + strArgs[0].toUpperCase()+",x"+String.format("[$%02X:%04X]", tDataBank,tDataAddr);
 				argsCap = false;
 				break;
 			}
 			case ABSOLUTE_INDEXED_X:{
-				int tDataBank = CPU.dbr.getValue();
-				int tDataAddr = Util.limitShort(((args[1] << 8) + args[0]) + CPU.x.getValue());
+				var tDataBank = CPU.dbr.getValue();
+				var tDataAddr = Util.limitShort(((args[1] << 8) + args[0]) + CPU.x.getValue());
 				argsString = "$"+strArgs[1].toUpperCase() + strArgs[0].toUpperCase()+",x"+ String.format("[$%02X:%04X]", tDataBank, tDataAddr);
 				argsCap = false;
 				break;}
 			case ABSOLUTE_INDEXED_Y:{
-				int tDataBank = CPU.dbr.getValue();
-				int tDataAddr = Util.limitShort(((args[1] << 8) + args[0]) + CPU.y.getValue());
+				var tDataBank = CPU.dbr.getValue();
+				var tDataAddr = Util.limitShort(((args[1] << 8) + args[0]) + CPU.y.getValue());
 				argsString = "$"+strArgs[1].toUpperCase() + strArgs[0].toUpperCase()+",y"+ String.format("[$%02X:%04X]", tDataBank, tDataAddr);
 				argsCap = false;
 				break;}
@@ -891,8 +891,8 @@ CPU.resetVectorInit = function() {
 				break;
 			case ABSOLUTE_INDEXED_INDIRECT:
 				indirectAddr = Util.limitShort(((args[1] << 8) + args[0]) + CPU.x.getValue());
-				int datajBank = CPU.pbr.getValue();
-				int datajAddr = Core.mem.get(Size.SHORT, CPU.pbr.getValue(), indirectAddr);
+				var datajBank = CPU.pbr.getValue();
+				var datajAddr = Core.mem.get(Size.SHORT, CPU.pbr.getValue(), indirectAddr);
 				if (opcode == 0x7C) // Jump is funky
 				{
 					argsString = String.format("($%s%s,x)[$%2X:%4X]",strArgs[1].toUpperCase(),strArgs[0].toUpperCase(),datajBank,datajAddr);
@@ -902,10 +902,10 @@ CPU.resetVectorInit = function() {
 			default:
 				argsString = "$";
 				if (strArgs.length>=2) {
-					for (int i = strArgs.length-1;i>=0;i--) {
+					for (var i = strArgs.length-1;i>=0;i--) {
 						argsString += strArgs[i];
 					}
-					for (int i= strArgs.length; i<3;i++)
+					for (var i= strArgs.length; i<3;i++)
 						argsString += "  ";
 					if (strArgs.length == 3)
 						argsString += String.format("[$%s:%s%s]", strArgs[2], strArgs[1],strArgs[0]);
@@ -917,7 +917,7 @@ CPU.resetVectorInit = function() {
 					}
 				} else {
 					
-					int offset = Util.signExtendByte(Integer.parseInt(strArgs[0],16));
+					var offset = Util.signExtendByte(Integer.parseInt(strArgs[0],16));
 					argsString +=strArgs[0]+"    [$"+Integer.toHexString(Util.limitShort(pc.getValue()+offset))+"]";
 				}
 				break;

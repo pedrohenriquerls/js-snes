@@ -1,13 +1,3 @@
-/*package edu.fit.cs.sno.snes.cpu.instructions;
-
-import edu.fit.cs.sno.snes.common.Instruction;
-import edu.fit.cs.sno.snes.cpu.AddressingMode;
-import edu.fit.cs.sno.snes.cpu.CPU;
-
-/**
- * Increment CPU instructions
- */
-
 	/**
 	 * Increment Accumulator
 	 * 0x1A
@@ -158,14 +148,14 @@ _incX.prototype.run = function(args){
 	 * Increment Index Register Y
 	 * 0xC8
 	 */ 
-function _incX() {
+function _incY() {
   this.name = "Increment Index Register Y"
   this.argCount = 0;
   this.size = Size.MEMORY_A;
   this.addrMode = AddressingMode.IMPLIED;
   this.mnemonic = 'INY'
 }
-_incX.prototype.run = function(args){
+_incY.prototype.run = function(args){
   CPU.y.add(1);
 			
 	CPU.status.setNegative(CPU.y.isNegative());
@@ -181,5 +171,5 @@ Increment = {
 	incAbsolute: 		new _incAbsolute(),
 	incAbsoluteX: 	new _incAbsoluteX(),
 	incX: 					new _incX(),
-	incY: 					new _incY(),
+	incY: 					new _incY()
 }

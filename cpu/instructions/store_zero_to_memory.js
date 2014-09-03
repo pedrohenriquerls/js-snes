@@ -1,11 +1,4 @@
-/*package edu.fit.cs.sno.snes.cpu.instructions;
 
-import edu.fit.cs.sno.snes.common.Instruction;
-import edu.fit.cs.sno.snes.common.Size;
-import edu.fit.cs.sno.snes.cpu.AddressingMode;
-import edu.fit.cs.sno.snes.cpu.CPU;
-
-	public static final String mnemonic = "STZ";
 	/**
      * Store Zero to Memory (Direct Page)
      * 0x64

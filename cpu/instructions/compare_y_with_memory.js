@@ -1,10 +1,3 @@
-/*package edu.fit.cs.sno.snes.cpu.instructions;
-
-import edu.fit.cs.sno.snes.common.Instruction;
-import edu.fit.cs.sno.snes.common.Size;
-import edu.fit.cs.sno.snes.cpu.AddressingMode;
-import edu.fit.cs.sno.snes.cpu.CPU;
-import edu.fit.cs.sno.util.Util;*/
 
 	/**
 	 * Compare Y with Memory Immediate

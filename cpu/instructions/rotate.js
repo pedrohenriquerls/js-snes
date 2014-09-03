@@ -1,12 +1,3 @@
-/*package edu.fit.cs.sno.snes.cpu.instructions;
-
-import edu.fit.cs.sno.snes.common.Instruction;
-import edu.fit.cs.sno.snes.common.Size;
-import edu.fit.cs.sno.snes.cpu.AddressingMode;
-import edu.fit.cs.sno.snes.cpu.CPU;
-
-public class 
-	public static final String mnemonic = "ROL";
 
 	/**
 	 * Rotate Memory or Accumulator Left Accumulator
@@ -122,14 +113,14 @@ _rotateLeftAbsoluteX.prototype.run = function(args){
 	 * Rotate Memory or Accumulator Left Direct Page Indexed X
 	 * 0x36
 	 */ 
-function _rotateLeftAbsoluteX() {
+function _rotateLeftDPX() {
   this.name = "Rotate Memory or Accumulator Left Direct Page Indexed X"
   this.argCount = 0;
   this.size = Size.MEMORY_A;
   this.addrMode = AddressingMode.DIRECT_PAGE_INDEXED_X;
   this.mnemonic = 'ROL'
 }
-_rotateLeftAbsoluteX.prototype.run = function(args){
+_rotateLeftDPX.prototype.run = function(args){
   CPU.loadDataRegister(this.addrMode, this.size.getRealSize(), args);
 	// Check top bit
 	var newCarry = CPU.dataReg.isNegative();

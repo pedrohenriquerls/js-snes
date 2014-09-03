@@ -1,8 +1,3 @@
-/*package edu.fit.cs.sno.snes.cpu.instructions;
-
-import edu.fit.cs.sno.snes.common.Instruction;
-import edu.fit.cs.sno.snes.common.Size;
-import edu.fit.cs.sno.snes.cpu.CPU;
 
 	/**
 	 * Transfer Accumulator to X
@@ -195,15 +190,7 @@ _transferXtoSP.prototype.run = function(args){
 	var cycles = 2;
 	return cycles;
 }
-	public static Instruction  = new Instruction() {
 
-		{this.name = "";
-		 this.mnemonic = "TXS";}
-		public var run(var[] args) {
-			
-		}
-	};
-	
 	/**
 	 * Transfer X to Y
 	 * 0x9B
@@ -260,7 +247,7 @@ function _transferYtoX() {
 	this.addrMode = AddressingMode.IMPLIED;
 	this.mnemonic = 'TYX'
 }
-+transferYtoX.prototype.run = function(args){
+_transferYtoX.prototype.run = function(args){
 	CPU.x.setValue(CPU.y.getValue());
 			
 	CPU.status.setNegative(CPU.x.isNegative());

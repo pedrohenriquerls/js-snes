@@ -1,16 +1,12 @@
-/*package edu.fit.cs.sno.snes.cpu.hwregs;
 
-import edu.fit.cs.sno.snes.mem.HWRegister;
-import edu.fit.cs.sno.util.Log;
-*/
 DMA = {
 	channels: [],
 	dmaReg: []
 }
 
 for(var i = 0; i < 8; i++){
-	channels[i] = new DMAChannel();
-	dmaReg[i] 	= buildDMAChannelRegisterGroup(i);
+	DMA.channels[i] = new DMAChannel();
+	DMA.dmaReg[i] 	= buildDMAChannelRegisterGroup(i);
 }
 
 	/**
@@ -19,14 +15,14 @@ for(var i = 0; i < 8; i++){
 	 */
 	// TODO: should take some cycles on the cpu
 DMA.HDMAInit = function() {
-	for (int i=0;i<8;i++) {
+	for (var i=0;i<8;i++) {
 		DMA.channels[i].initHDMA();
 	}
 }
 	
 	// Perform the HDMA transfer for the current scanline	
 DMA.HDMARun = function() {
-	for (int i=0; i<8; i++) {
+	for (var i=0; i<8; i++) {
 		DMA.channels[i].doHDMA();
 	}
 }
@@ -67,7 +63,7 @@ DMA.mdmaen.onWrite = function(value){
 DMA.hdmaen = new HWRegister()
 DMA.hdmaen.onWrite = function(value) {
 	// Check each channel, and start the hdma transfer if necessary
-	for(int i=0;i<8;i++) {
+	for(var i=0;i<8;i++) {
 		if (((value >> i) & 0x01) == 0x01) {
 			DMA.startHDMA(i);
 		} else {

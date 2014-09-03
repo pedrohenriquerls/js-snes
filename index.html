@@ -1,32 +1,64 @@
 <html>
   <head>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
-  <script type="text/javascript" src="cpu_65816.js"></script>
+
+  <script type="text/javascript" src="mem/hwregister.js"></script>
+  <script type="text/javascript" src="cpu/hwregs/cpu_registers.js"></script>
+  <script type="text/javascript" src="cpu/hwregs/cpu_math.js"></script>
+  
+  <script type="text/javascript" src="cpu/hwregs/dma_channel.js"></script>
+  <script type="text/javascript" src="cpu/hwregs/dma_channel_register_group.js"></script>
+  <script type="text/javascript" src="cpu/hwregs/dma.js"></script>
+
+  <script type="text/javascript" src="cpu/common/register.js"></script>
+  <script type="text/javascript" src="cpu/common/size.js"></script>
+  <script type="text/javascript" src="cpu/common/util.js"></script>
+
+  <script type="text/javascript" src="mem/memory.js"></script>
+  <script type="text/javascript" src="mem/lo_rom_memory.js"></script>
+  <script type="text/javascript" src="mem/hi_rom_memory.js"></script>
+  <script type="text/javascript" src="mem/UnimplementedHardwareRegister.js"></script>
+
+  <script type="text/javascript" src="cpu/addressing_mode.js"></script>
+  <script type="text/javascript" src="cpu/status_register.js"></script>
+  
+  <script type="text/javascript" src="cpu/instructions/add.js"></script>
+  <script type="text/javascript" src="cpu/instructions/and_a_with_memory.js"></script>
+  <script type="text/javascript" src="cpu/instructions/block_move.js"></script>
+  <script type="text/javascript" src="cpu/instructions/branching.js"></script>
+  <script type="text/javascript" src="cpu/instructions/compare_a_with_memory.js"></script>
+  <script type="text/javascript" src="cpu/instructions/compare_x_with_memory.js"></script>
+  <script type="text/javascript" src="cpu/instructions/compare_y_with_memory.js"></script>
+  <script type="text/javascript" src="cpu/instructions/decrement.js"></script>
+  <script type="text/javascript" src="cpu/instructions/e_or_a_with_memory.js"></script>
+  <script type="text/javascript" src="cpu/instructions/flag_ops.js"></script>
+  <script type="text/javascript" src="cpu/instructions/increment.js"></script>
+  <script type="text/javascript" src="cpu/instructions/jump.js"></script>
+  <script type="text/javascript" src="cpu/instructions/load_a_from_memory.js"></script>
+  <script type="text/javascript" src="cpu/instructions/load_x_from_memory.js"></script>
+  <script type="text/javascript" src="cpu/instructions/load_y_from_memory.js"></script>
+  <script type="text/javascript" src="cpu/instructions/misc.js"></script>
+  <script type="text/javascript" src="cpu/instructions/or_a_with_memory.js"></script>
+  <script type="text/javascript" src="cpu/instructions/pull.js"></script>
+  <script type="text/javascript" src="cpu/instructions/push.js"></script>
+  <script type="text/javascript" src="cpu/instructions/return.js"></script>
+  <script type="text/javascript" src="cpu/instructions/rotate.js"></script>
+  <script type="text/javascript" src="cpu/instructions/shift.js"></script>
+  <script type="text/javascript" src="cpu/instructions/store_a_to_memory.js"></script>
+  <script type="text/javascript" src="cpu/instructions/store_x_to_memory.js"></script>
+  <script type="text/javascript" src="cpu/instructions/store_y_to_memory.js"></script>
+  <script type="text/javascript" src="cpu/instructions/store_zero_to_memory.js"></script>
+  <script type="text/javascript" src="cpu/instructions/subtract.js"></script>
+  <script type="text/javascript" src="cpu/instructions/test_bits.js"></script>
+  <script type="text/javascript" src="cpu/instructions/transfer.js"></script>
+
+  <script type="text/javascript" src="cpu/timing.js"></script>
+  <script type="text/javascript" src="cpu/cpu.js"></script>
+
+
   <script type="text/javascript" src="snes.js"></script>
   <script type="text/javascript">
-    var snes = new Snes()
-    snes.insertRomAndPlay('mario.smc')
-
-    setInterval(function(){
-      $("#registerA").text(snes.cpu.r.a.toString(16));
-      $("#registerB").text(snes.cpu.r.b.toString(16));
-      $("#registerX").text(snes.cpu.r.x.toString(16));
-      $("#registerY").text(snes.cpu.r.y.toString(16));
-      $("#registerD").text(snes.cpu.r.d.toString(16));
-      $("#registerS").text(snes.cpu.r.s.toString(16));
-      $("#registerPC").text(snes.cpu.r.pc.toString(16));
-      $("#registerDBR").text(snes.cpu.r.dbr.toString(16));
-      $("#registerK").text(snes.cpu.r.k.toString(16));
-      $("#registerPFlagE").text(snes.cpu.p.e);
-      $("#registerPFlagC").text(snes.cpu.p.c);
-      $("#registerPFlagZ").text(snes.cpu.p.z);
-      $("#registerPFlagI").text(snes.cpu.p.i);
-      $("#registerPFlagD").text(snes.cpu.p.d);
-      $("#registerPFlagX").text(snes.cpu.p.x);
-      $("#registerPFlagM").text(snes.cpu.p.m);
-      $("#registerPFlagV").text(snes.cpu.p.v);
-      $("#registerPFlagN").text(snes.cpu.p.n);
-    }, 100)
+    
   </script>
   </head>
   <body>

@@ -1,9 +1,3 @@
-/*package edu.fit.cs.sno.snes.cpu.instructions;
-
-import edu.fit.cs.sno.snes.common.Instruction;
-import edu.fit.cs.sno.snes.common.Size;
-import edu.fit.cs.sno.snes.cpu.AddressingMode;
-import edu.fit.cs.sno.snes.cpu.CPU;
 
 	/**
 	 * Test Memory Bits against Accumulator Immediate
@@ -30,14 +24,14 @@ _testImmediate.prototype.run = function(args){
 	 * Test Memory Bits against Accumulator Absolute
 	 * 0x2C
 	 */ 
-function _testImmediate() {
+function _testAbsolute() {
 	this.name = "Test Memory Bits against Accumulator Absolute"
 	this.argCount = 0;
 	this.size = Size.MEMORY_A;
 	this.addrMode = AddressingMode.ABSOLUTE;
 	this.mnemonic = 'BIT'
 }
-_testImmediate.prototype.run = function(args){
+_testAbsolute.prototype.run = function(args){
 	CPU.loadDataRegister(this.addrMode, this.size.getRealSize(), args);
 	CPU.status.setNegative(CPU.dataReg.isNegative());
 	if (this.this.size.getRealSize() == Size.SHORT)

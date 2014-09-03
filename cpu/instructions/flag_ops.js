@@ -1,11 +1,4 @@
-/*package edu.fit.cs.sno.snes.cpu.instructions;
 
-import edu.fit.cs.sno.snes.common.Instruction;
-import edu.fit.cs.sno.snes.cpu.AddressingMode;
-import edu.fit.cs.sno.snes.cpu.CPU;
-
-public class 
-    
     /* Clear Carry Flag
      * 0x18
      */ 
@@ -128,14 +121,14 @@ _setInterruptDisableFlag.prototype.run = function(args){
     /* Clear Processor Status Bits
      * 0xC2
      */ 
-function _setProcessorStatusBits() {
+function _resetProcessorStatusBits() {
     this.name = "Clear Processor Status Bits"
     this.argCount = 1;
     this.size = Size.MEMORY_A;
     this.addrMode = AddressingMode.IMPLIED;
     this.mnemonic = 'REP'
 }
-_setInterruptDisableFlag.prototype.run = function(args){
+_resetProcessorStatusBits.prototype.run = function(args){
     CPU.status.setCarry((args[0] & 0x01)  == 0x01?false:CPU.status.isCarry());
     CPU.status.setZero((args[0] & 0x02)  == 0x02?false:CPU.status.isZero());
     CPU.status.setIrqDisable((args[0] & 0x04) == 0x04?false:CPU.status.isIrqDisable());

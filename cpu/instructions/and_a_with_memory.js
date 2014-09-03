@@ -1,9 +1,3 @@
-/*package edu.fit.cs.sno.snes.cpu.instructions;
-
-import edu.fit.cs.sno.snes.common.Instruction;
-import edu.fit.cs.sno.snes.common.this.size;
-import edu.fit.cs.sno.snes.cpu.AddressingMode;
-import edu.fit.cs.sno.snes.cpu.CPU;*/
 
 	/**
 	 * AND Accumulator with Memory DP Indexed Indirect, X
@@ -214,7 +208,7 @@ _andAMemDPIndirectY.prototype.run = function(args){
 	 * 0x32
 	 */ 
 function _andAMemDPIndirect(){
-	his.name = "AND Accumulator with Memory Direct Page Indirect"
+	this.name = "AND Accumulator with Memory Direct Page Indirect"
 	this.argCount = 0;
 	this.size = Size.MEMORY_A;
 	this.addrMode = AddressingMode.DIRECT_PAGE_INDIRECT;
@@ -253,7 +247,7 @@ _andAMemSRIndirectY.prototype.run = function(args){
 	CPU.status.setNegative(CPU.a.isNegative());
 	CPU.status.setZero(CPU.a.getValue() == 0);
 	
-	int cycles = 7;
+	var cycles = 7;
 	if (!CPU.status.isMemoryAccess())
 		cycles++;
 	return cycles;
@@ -354,7 +348,7 @@ _andAMemAbsoluteX.prototype.run = function(args){
 	CPU.status.setNegative(CPU.a.isNegative());
 	CPU.status.setZero(CPU.a.getValue() == 0);
 	
-	int cycles = 6;
+	var cycles = 6;
 	if (!CPU.status.isMemoryAccess())
 		cycles++;
 	if (CPU.indexCrossedPageBoundary)

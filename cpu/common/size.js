@@ -1,4 +1,3 @@
-//import cpu
 
 function _size(topBitMask, sizeMask){
 	this.topBitMask = topBitMask
@@ -6,7 +5,7 @@ function _size(topBitMask, sizeMask){
 }
 
 _size.prototype = {
-	getNumBits = function() {
+	getNumBits: function() {
 		var s = this.getRealSize();
 		if(s == Size.BYTE) {
 			return 8;
@@ -15,9 +14,9 @@ _size.prototype = {
 		} else {
 			alert("Unknown size");
 		}
-	}
+	},
 	
-	getRealSize = function() {
+	getRealSize: function() {
 		if (this == Size.MEMORY_A) {
 			if (CPU.status.isMemoryAccess()) {
 				return Size.BYTE;
@@ -40,5 +39,5 @@ Size = {
 	BYTE 			: new _size(0x80, 0xFF),		// 1 Byte value
 	SHORT			: new _size(0x8000, 0xFFFF),	// 2 Byte value
 	MEMORY_A	: new _size(0, 0),	// Determined by memory access flag
-	INDEX 		: new _size(0, 0);
+	INDEX 		: new _size(0, 0)
 }

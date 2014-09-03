@@ -1,12 +1,4 @@
-/*package edu.fit.cs.sno.snes.cpu.instructions;
 
-import edu.fit.cs.sno.snes.common.Instruction;
-import edu.fit.cs.sno.snes.common.Size;
-import edu.fit.cs.sno.snes.cpu.AddressingMode;
-import edu.fit.cs.sno.snes.cpu.CPU;
-
-public class Shift {
-	public static final String mnemonic = "ASL";
 
 	/**
 	 * Shift Memory or Accumulator Left Accumulator
@@ -37,14 +29,14 @@ _shiftLeftAccumulator.prototype.run = function(args){
 	 * Shift Memory or Accumulator Left Direct Page
 	 * 0x06
 	 */ 
-function _shiftLeftAccumulator() {
+function _shiftLeftDP() {
   this.name = "Shift Memory or Accumulator Left Direct Page"
   this.argCount = 0;
   this.size = Size.MEMORY_A;
   this.addrMode = AddressingMode.DIRECT_PAGE;
   this.mnemonic = 'ASL'
 }
-_shiftLeftAccumulator.prototype.run = function(args){
+_shiftLeftDP.prototype.run = function(args){
   CPU.loadDataRegister(addrMode, size.getRealSize(), args);
 	// Check the top bit to set the carry flag
 	var newCarry = CPU.dataReg.isNegative();
@@ -262,14 +254,14 @@ _shiftRightAbsoluteX.prototype.run = function(args){
 	 * Logical Shift Memory or Accumulator Right Direct Page Indexed X
 	 * 0x56
 	 */ 
-function _shiftRightAbsoluteX() {
+function _shiftRightDPX() {
   this.name = "Logical Shift Memory or Accumulator Right Direct Page Indexed X"
   this.argCount = 0;
   this.size = Size.MEMORY_A;
   this.addrMode = AddressingMode.DIRECT_PAGE_INDEXED_X;
   this.mnemonic = 'LSR'
 }
-_shiftRightAbsoluteX.prototype.run = function(args){
+_shiftRightDPX.prototype.run = function(args){
   CPU.loadDataRegister(addrMode, size.getRealSize(), args);
 	// Check top bit
 	var newCarry = (CPU.dataReg.getValue() & 0x1) != 0;
@@ -296,6 +288,5 @@ Shift = {
 	shiftLeftDPX: 				 new _shiftLeftDPX(),
 	shiftRightAccumulator: new _shiftRightAccumulator(),
 	shiftRightAbsolute: 	 new _shiftRightAbsolute(),
-	shiftRightDP: 				 new _shiftRightDP(),
 	shiftRightDPX: 				 new _shiftRightDPX()
 }

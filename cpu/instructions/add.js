@@ -1,8 +1,3 @@
-//import edu.fit.cs.sno.snes.common.Instruction;
-//import edu.fit.cs.sno.snes.common.Size;
-//import edu.fit.cs.sno.snes.cpu.AddressingMode;
-//import edu.fit.cs.sno.snes.cpu.CPU;
-//import edu.fit.cs.sno.util.Util;
 
 /**
 * Add with Carry from Accumulator Immediate
@@ -135,35 +130,35 @@ function _addDP(){
 	this.mnemonic = 'ADC'
 }
 _addDP.prototype.run = function(args){
-		CPU.loadDataRegister(this.addrMode, this.size.getRealSize(), args);
-		var oldA = CPU.a.getValue();
-		var oldNeg = CPU.a.isNegative();
-		
-		CPU.a.add(CPU.dataReg.getValue() + (CPU.status.isCarry() ? 1 : 0));
-		
-		// BCD adjust
-		if (CPU.status.isDecimalMode()) {
-			CPU.a.setValue(Util.bcdAdjustAdd(Size.MEMORY_A.getRealSize(), CPU.a.getValue()));
-		}
-		
-		CPU.status.setNegative(CPU.a.isNegative());
-		CPU.status.setZero(CPU.a.getValue() == 0);
-		CPU.status.setCarry((CPU.a.getValue() < oldA) || (CPU.status.isCarry() && oldA == CPU.a.getValue()));
-		if(CPU.status.isDecimalMode()){
-			CPU.status.setOverflow(false)
-		}else{
-			CPU.status.setOverflow(oldNeg == CPU.dataReg.isNegative() && oldNeg != CPU.a.isNegative());
-		} 
-		
-		var cycles = 3;
-		if (!CPU.status.isMemoryAccess())
-			cycles++;
-
-		if ((CPU.dp.getValue() & 0xFF) != 0)
-			cycles++;
-		return cycles;
+	CPU.loadDataRegister(this.addrMode, this.size.getRealSize(), args);
+	var oldA = CPU.a.getValue();
+	var oldNeg = CPU.a.isNegative();
+	
+	CPU.a.add(CPU.dataReg.getValue() + (CPU.status.isCarry() ? 1 : 0));
+	
+	// BCD adjust
+	if (CPU.status.isDecimalMode()) {
+		CPU.a.setValue(Util.bcdAdjustAdd(Size.MEMORY_A.getRealSize(), CPU.a.getValue()));
 	}
+	
+	CPU.status.setNegative(CPU.a.isNegative());
+	CPU.status.setZero(CPU.a.getValue() == 0);
+	CPU.status.setCarry((CPU.a.getValue() < oldA) || (CPU.status.isCarry() && oldA == CPU.a.getValue()));
+	if(CPU.status.isDecimalMode()){
+		CPU.status.setOverflow(false)
+	}else{
+		CPU.status.setOverflow(oldNeg == CPU.dataReg.isNegative() && oldNeg != CPU.a.isNegative());
+	} 
+	
+	var cycles = 3;
+	if (!CPU.status.isMemoryAccess())
+		cycles++;
+
+	if ((CPU.dp.getValue() & 0xFF) != 0)
+		cycles++;
+	return cycles;
 }
+
 
 /**
  * Add with Carry from Accumulator Direct Page Indirect Long
@@ -239,7 +234,7 @@ _addAbsolute.prototype.run = function(args){
 		CPU.status.setOverflow(oldNeg == CPU.dataReg.isNegative() && oldNeg != CPU.a.isNegative());
 	}
 	
-	car cycles = 4;
+	var cycles = 4;
 	if (!CPU.status.isMemoryAccess())
 		cycles++;
 
@@ -258,32 +253,31 @@ function _addAbsoluteLong(){
 	this.mnemonic = 'ADC'
 }
 _addAbsoluteLong.prototype.run = function(args){
-		CPU.loadDataRegister(this.addrMode, this.size.getRealSize(), args);
-		var oldA = CPU.a.getValue();
-		var oldNeg = CPU.a.isNegative();
-		
-		CPU.a.add(CPU.dataReg.getValue() + (CPU.status.isCarry() ? 1 : 0));
-		
-		// BCD adjust
-		if (CPU.status.isDecimalMode()) {
-			CPU.a.setValue(Util.bcdAdjustAdd(Size.MEMORY_A.getRealSize(), CPU.a.getValue()));
-		}
-		
-		CPU.status.setNegative(CPU.a.isNegative());
-		CPU.status.setZero(CPU.a.getValue() == 0);
-		CPU.status.setCarry((CPU.a.getValue() < oldA) || (CPU.status.isCarry() && oldA == CPU.a.getValue()));
-		if(CPU.status.isDecimalMode()){
-			CPU.status.setOverflow(false);
-		}else{
-			CPU.status.setOverflow(oldNeg == CPU.dataReg.isNegative() && oldNeg != CPU.a.isNegative());
-		} 
-		
-		var cycles = 5;
-		if (!CPU.status.isMemoryAccess())
-			cycles++;
-
-		return cycles;
+	CPU.loadDataRegister(this.addrMode, this.size.getRealSize(), args);
+	var oldA = CPU.a.getValue();
+	var oldNeg = CPU.a.isNegative();
+	
+	CPU.a.add(CPU.dataReg.getValue() + (CPU.status.isCarry() ? 1 : 0));
+	
+	// BCD adjust
+	if (CPU.status.isDecimalMode()) {
+		CPU.a.setValue(Util.bcdAdjustAdd(Size.MEMORY_A.getRealSize(), CPU.a.getValue()));
 	}
+	
+	CPU.status.setNegative(CPU.a.isNegative());
+	CPU.status.setZero(CPU.a.getValue() == 0);
+	CPU.status.setCarry((CPU.a.getValue() < oldA) || (CPU.status.isCarry() && oldA == CPU.a.getValue()));
+	if(CPU.status.isDecimalMode()){
+		CPU.status.setOverflow(false);
+	}else{
+		CPU.status.setOverflow(oldNeg == CPU.dataReg.isNegative() && oldNeg != CPU.a.isNegative());
+	} 
+	
+	var cycles = 5;
+	if (!CPU.status.isMemoryAccess())
+		cycles++;
+
+	return cycles;
 }
 
 /**
@@ -449,7 +443,7 @@ _addDPX.prototype.run = function(args){
 		CPU.status.setOverflow(oldNeg == CPU.dataReg.isNegative() && oldNeg != CPU.a.isNegative());
 	} 
 	
-	int cycles = 4;
+	var cycles = 4;
 	if (!CPU.status.isMemoryAccess())
 		cycles++;
 
@@ -535,7 +529,7 @@ _addAbsoluteY.prototype.run = function(args){
 		CPU.status.setOverflow(oldNeg == CPU.dataReg.isNegative() && oldNeg != CPU.a.isNegative());
 	} 
 	
-	int cycles = 4;
+	var cycles = 4;
 	if (!CPU.status.isMemoryAccess())
 		cycles++;
 
@@ -630,7 +624,7 @@ _addAbsoluteLongX.prototype.run = function(args){
 	return cycles;
 }
 
-Add{
+Add = {
 	addImmediate: 			new _addImediate(),
 	addDPIndirectX: 		new _addDPIndirectX(),
 	addStackRelative: 	new _addStackRelative(),

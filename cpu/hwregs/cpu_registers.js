@@ -1,12 +1,3 @@
-/*package edu.fit.cs.sno.snes.cpu.hwregs;
-
-import edu.fit.cs.sno.snes.cpu.CPU;
-import edu.fit.cs.sno.snes.input.Input;
-import edu.fit.cs.sno.snes.input.SNESController;
-import edu.fit.cs.sno.snes.mem.HWRegister;
-import edu.fit.cs.sno.util.Log;
-import edu.fit.cs.sno.util.Settings;
-*/
 
 CPURegisters = {}
 

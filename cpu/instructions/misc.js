@@ -1,13 +1,4 @@
-/*package edu.fit.cs.sno.snes.cpu.instructions;
 
-import edu.fit.cs.sno.snes.Core;
-import edu.fit.cs.sno.snes.common.Instruction;
-import edu.fit.cs.sno.snes.common.Size;
-import edu.fit.cs.sno.snes.cpu.AddressingMode;
-import edu.fit.cs.sno.snes.cpu.CPU;
-
-public class 
-	public static String mnemonic = "hello world";
 	/**
 	 * Software Break
 	 * 0x00
@@ -77,7 +68,7 @@ function _exchangeBA() {
   this.addrMode = AddressingMode.IMPLIED;
   this.mnemonic = 'XBA'
 }
-_wdm.prototype.run = function(args){
+_exchangeBA.prototype.run = function(args){
   var b = (CPU.a.getRealValue() & 0xFF00) >> 8;
 	var a = (CPU.a.getRealValue() & 0x00FF);
 	CPU.a.setRealValue((a << 8) + b);
@@ -92,14 +83,14 @@ _wdm.prototype.run = function(args){
 	 * Co-Processor Enable
 	 * 0x02
 	 */
-function _exchangeBA() {
+function _coprocessorEnable() {
   this.name = "Enable Co-Processor"
   this.argCount = 1;
   this.size = Size.MEMORY_A;
   this.addrMode = AddressingMode.IMPLIED;
   this.mnemonic = 'COP'
 }
-_exchangeBA.prototype.run = function(args){
+_coprocessorEnable.prototype.run = function(args){
   //var signatureByte = args[0];
 	var cycles;
 	if (CPU.emulationMode) {

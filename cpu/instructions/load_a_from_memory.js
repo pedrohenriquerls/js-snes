@@ -1,9 +1,4 @@
-/*package edu.fit.cs.sno.snes.cpu.instructions;
 
-import edu.fit.cs.sno.snes.common.Instruction;
-import edu.fit.cs.sno.snes.common.Size;
-import edu.fit.cs.sno.snes.cpu.AddressingMode;
-import edu.fit.cs.sno.snes.cpu.CPU;*/
 
 	/**
 	 * Load Accumulator from Memory Direct Page Indexed Indirect X
@@ -211,14 +206,14 @@ _loadADPIndirectIndexedY.prototype.run = function(args){
 	 * Load Accumulator from Memory Direct Page Indirect
 	 * 0xB2
 	 */ 
-function _loadADPIndirectIndexedY() {
+function _loadADPIndirect() {
   this.name = "Load Accumulator from Memory Direct Page Indirect"
   this.argCount = 0;
   this.size = Size.MEMORY_A;
   this.addrMode = AddressingMode.DIRECT_PAGE_INDIRECT;
   this.mnemonic = 'LDA'
 }
-_loadADPIndirectIndexedY.prototype.run = function(args){
+_loadADPIndirect.prototype.run = function(args){
   CPU.loadDataRegister(this.addrMode, this.size.getRealSize(), args);
 	CPU.a.setValue(CPU.dataReg.getValue());
 	

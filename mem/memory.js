@@ -1,26 +1,3 @@
-/*package edu.fit.cs.sno.snes.mem;
-
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Arrays;
-
-import edu.fit.cs.sno.snes.apu.hwregs.APURegisters;
-import edu.fit.cs.sno.snes.common.Size;
-import edu.fit.cs.sno.snes.cpu.Timing;
-import edu.fit.cs.sno.snes.cpu.hwregs.CPUMath;
-import edu.fit.cs.sno.snes.cpu.hwregs.CPURegisters;
-import edu.fit.cs.sno.snes.cpu.hwregs.DMA;
-import edu.fit.cs.sno.snes.ppu.hwregs.BGRegisters;
-import edu.fit.cs.sno.snes.ppu.hwregs.CGRAM;
-import edu.fit.cs.sno.snes.ppu.hwregs.OAMRegisters;
-import edu.fit.cs.sno.snes.ppu.hwregs.PPURegisters;
-import edu.fit.cs.sno.snes.ppu.hwregs.VRAM;
-import edu.fit.cs.sno.snes.ppu.hwregs.WindowRegisters;
-import edu.fit.cs.sno.util.Log;
-import edu.fit.cs.sno.util.Settings;
-import edu.fit.cs.sno.util.Util;
-*/
 function Memory(){
 	this.isHiROM;
 	// Initialize memory
@@ -31,6 +8,7 @@ function Memory(){
 	this.rom; // 0x80 chunks of 32k
 
 	// CPU related hwregs
+	this.mmap = []
 	this.mmap[0x4200 - 0x2000] = CPURegisters.interruptEnable;
 	this.mmap[0x4201 - 0x2000] = CPURegisters.wrio;
 	this.mmap[0x4207 - 0x2000] = CPURegisters.htimel;
@@ -58,7 +36,7 @@ function Memory(){
 	this.mmap[0x420C - 0x2000] = DMA.hdmaen;
 	
 	// DMA Channel x Registers
-	for (int i = 0; i<8;i++) {
+	for (var i = 0; i<8;i++) {
 		this.mmap[0x4300 - 0x2000 + 0x10*i] = DMA.dmaReg[i].dmapx;
 		this.mmap[0x4301 - 0x2000 + 0x10*i] = DMA.dmaReg[i].bbadx;
 		this.mmap[0x4302 - 0x2000 + 0x10*i] = DMA.dmaReg[i].a1txl;
@@ -323,7 +301,7 @@ Memory.prototype = {
 			try {
 				String fname = Settings.get(Settings.DEBUG_DIR) + "/wram.bin";
 				FileOutputStream fos = new FileOutputStream(fname);
-				for(int i=0; i<wram.length; i++)
+				for(var i=0; i<wram.length; i++)
 					fos.write(wram[i]);
 				fos.close();
 			} catch (IOException e) {

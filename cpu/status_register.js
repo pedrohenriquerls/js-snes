@@ -63,9 +63,9 @@ StatusRegister.prototype = {
 		status |= (this.carry ? 0x1 : 0);
 		
 		return status;
-	}
+	},
 	
-	setValue: function(int status) {
+	setValue: function(status) {
 		this.negative = (status & 0x80) != 0;
 		this.overflow = (status & 0x40) != 0;
 		this.setMemoryAccess((status & 0x20) != 0);
@@ -74,7 +74,7 @@ StatusRegister.prototype = {
 		this.irq_disable = (status & 0x4) != 0;
 		this.zero = (status & 0x2) != 0;
 		this.carry = (status & 0x1) != 0;
-	}
+	},
 
 	setMemoryAccess: function(memory_access) {
 		this.memory_access = memory_access;
@@ -84,7 +84,7 @@ StatusRegister.prototype = {
 		} else {
 			CPU.a.setSize(Size.SHORT);
 		}
-	}
+	},
 
 	setIndexRegister: function(index_register) {
 		this.index_register = index_register;
@@ -99,10 +99,10 @@ StatusRegister.prototype = {
 			CPU.x.setSize(Size.SHORT);
 			CPU.y.setSize(Size.SHORT);
 		}
-	}
+	},
 	
 	toString: function() {
-		StringBuffer sb = new StringBuffer();
+		/*StringBuffer sb = new StringBuffer();
 		sb.append(this.negative 			? "N" : "n");
 		sb.append(this.overflow 			? "V" : "v");
 		sb.append(this.memory_access 	? "M" : "m");
@@ -112,6 +112,7 @@ StatusRegister.prototype = {
 		sb.append(this.zero 					? "Z" : "z");
 		sb.append(this.carry 					? "C" : "c");
 		
-		return sb.toString();
+		return sb.toString();*/
+		return "TODO: to string StatusRegister"
 	}
 }

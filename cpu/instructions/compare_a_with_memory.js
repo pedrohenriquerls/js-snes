@@ -1,10 +1,3 @@
-/*package edu.fit.cs.sno.snes.cpu.instructions;
-
-import edu.fit.cs.sno.snes.common.Instruction;
-import edu.fit.cs.sno.snes.common.Size;
-import edu.fit.cs.sno.snes.cpu.AddressingMode;
-import edu.fit.cs.sno.snes.cpu.CPU;
-import edu.fit.cs.sno.util.Util;*/
 
 	/**
 	 * Compare A with Memory Direct Page Indexed Indirect X
@@ -86,13 +79,6 @@ _cmpADP.prototype.run = function(args){
 
 	return cycles;
 }
-	public static Instruction cmpADP = new Instruction(AddressingMode., Size.MEMORY_A) {
-
-		{this.name = "";}
-		public int run(int[] args) {
-			
-		}
-	};
 	
 	/**
 	 * Compare A with Memory Direct Page Indirect Long
@@ -344,13 +330,13 @@ function _cmpAAbsoluteY() {
 }
 _cmpAAbsoluteY.prototype.run = function(args){
 	CPU.loadDataRegister(this.addrMode, this.size.getRealSize(), args);
-	int newVal = Util.limit(this.size.getRealSize(), CPU.a.getValue() - CPU.dataReg.getValue());
+	var newVal = Util.limit(this.size.getRealSize(), CPU.a.getValue() - CPU.dataReg.getValue());
 	
 	CPU.status.setNegative((newVal & this.size.getRealSize().topBitMask) != 0);
 	CPU.status.setZero(newVal == 0);
 	CPU.status.setCarry(CPU.a.getValue() >= CPU.dataReg.getValue());
 	
-	int cycles = 6;
+	var cycles = 6;
 	if (!CPU.status.isMemoryAccess())
 		cycles++;
 	if (CPU.indexCrossedPageBoundary)
@@ -370,13 +356,13 @@ function _cmpAAbsoluteX() {
 }
 _cmpAAbsoluteX.prototype.run = function(args){
 	CPU.loadDataRegister(this.addrMode, this.size.getRealSize(), args);
-	int newVal = Util.limit(this.size.getRealSize(), CPU.a.getValue() - CPU.dataReg.getValue());
+	var newVal = Util.limit(this.size.getRealSize(), CPU.a.getValue() - CPU.dataReg.getValue());
 	
 	CPU.status.setNegative((newVal & size.getRealSize().topBitMask) != 0);
 	CPU.status.setZero(newVal == 0);
 	CPU.status.setCarry(CPU.a.getValue() >= CPU.dataReg.getValue());
 	
-	int cycles = 4;
+	var cycles = 4;
 	if (!CPU.status.isMemoryAccess())
 		cycles++;
 	if (CPU.indexCrossedPageBoundary)

@@ -1,11 +1,3 @@
-/*package edu.fit.cs.sno.util;
-
-import java.io.InputStream;
-import java.net.URL;
-
-import edu.fit.cs.sno.applet.SNOApplet;
-import edu.fit.cs.sno.snes.common.Size;*/
-
 
 /**
  * General utility functions not specific to any one component
@@ -93,8 +85,8 @@ Util = {
 	
 	/**
 	 * Converts a BCD integer to a binary integer (unsigned only)
-	 * @param val BCD int to convert
-	 * @return Java integer representing value of BCD int
+	 * @param val BCD var to convert
+	 * @return Java integer representing value of BCD var
 	 */
 	bcdToInt: function(val) {
 		var returnVal = 0;
@@ -116,7 +108,7 @@ Util = {
 	implode: function(strs, glue) {
 		var str = "";
 		
-		for (int k = 0; k < strs.length; k++) {
+		for (var k = 0; k < strs.length; k++) {
 			if (k != 0) str += glue;
 			str += String(strs[k]);
 		}
@@ -130,10 +122,10 @@ Util = {
 	 * @param glue String to join with 
 	 * @return string containing the array elements
 	 */
-	implode: function(strs, String glue) {
+	implode: function(strs, glue) {
 		var str = "";
 		
-		for (int k = 0; k < strs.length; k++) {
+		for (var k = 0; k < strs.length; k++) {
 			if (k != 0) str += glue;
 			str += strs[k];
 		}
@@ -162,7 +154,7 @@ Util = {
 		return newVal;
 	},
 	
-	getStreamFromUrl: function (String loc) {
+	getStreamFromUrl: function (loc) {
 		var is = null;
 		//TODO
 		/*try {
@@ -188,9 +180,9 @@ Util = {
 	 * @param bits
 	 * @return
 	 */
-	sclip: function(int bits, int x) {
-		int b = 1 << (bits - 1);
-		int m = (1 << bits) - 1;
+	sclip: function(bits, x) {
+		var b = 1 << (bits - 1);
+		var m = (1 << bits) - 1;
 		return ((x & m) ^ b) - b;
 	}
 }

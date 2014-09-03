@@ -1,10 +1,3 @@
-/*package edu.fit.cs.sno.snes.cpu.instructions;
-
-import edu.fit.cs.sno.snes.common.Instruction;
-import edu.fit.cs.sno.snes.common.Size;
-import edu.fit.cs.sno.snes.cpu.AddressingMode;
-import edu.fit.cs.sno.snes.cpu.CPU;
-import edu.fit.cs.sno.util.Util;
 
 	/**
 	 * Subtract with Borrow from Accumulator Immediate
@@ -119,14 +112,14 @@ _subFromAStackRelative.prototype.run = function(args){
 	 * Subtract with Borrow from Accumulator Direct Page
 	 * 0xE5
 	 */ 
-function _subFromAStackRelative() {
+function _subFromADP() {
 	this.name = "Subtract with Borrow from Accumulator Direct Page"
 	this.argCount = 0;
 	this.size = Size.MEMORY_A;
 	this.addrMode = AddressingMode.DIRECT_PAGE;
 	this.mnemonic = 'SBC'
 }
-_subFromAStackRelative.prototype.run = function(args){
+_subFromADP.prototype.run = function(args){
 	CPU.loadDataRegister(this.addrMode, this.size.getRealSize(), args);
 	var oldA = CPU.a.getValue();
 	var oldNeg = CPU.a.isNegative();
@@ -495,14 +488,14 @@ _subFromAAbsoluteY.prototype.run = function(args){
 	 * Subtract with Borrow from Accumulator Absolute Indexed X
 	 * 0xFD
 	 */ 
-function _subFromAAbsoluteY() {
+function _subFromAAbsoluteX() {
 	this.name = "Subtract with Borrow from Accumulator Absolute Indexed X"
 	this.argCount = 0;
 	this.size = Size.MEMORY_A;
 	this.addrMode = AddressingMode.ABSOLUTE_INDEXED_X;
 	this.mnemonic = 'SBC'
 }
-_subFromAAbsoluteY.prototype.run = function(args){
+_subFromAAbsoluteX.prototype.run = function(args){
 	CPU.loadDataRegister(this.addrMode, this.size.getRealSize(), args);
 	var oldA = CPU.a.getValue();
 	var oldNeg = CPU.a.isNegative();

@@ -1,11 +1,3 @@
-/*package edu.fit.cs.sno.snes.cpu.hwregs;
-
-import edu.fit.cs.sno.snes.Core;
-import edu.fit.cs.sno.snes.common.Size;
-import edu.fit.cs.sno.snes.cpu.Timing;
-import edu.fit.cs.sno.util.Log;
-import edu.fit.cs.sno.util.Util;
-*/
 
 function DMAChannel(){
 	this.hdmaEnabled;
@@ -134,7 +126,7 @@ DMAChannel.prototype = {
 			this.adjustSrcAddress(size);
 			this.transferSize -= size;
 		}
-	}
+	},
 	
 	dmaTransferPPUOnce: function(fromBank, fromAddress, toBank, toAddress) {
 		// TODO: for normal dma transfers, only write to at most $this.transferSize registers, even if we are supposed to write to multiple ones this call
