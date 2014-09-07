@@ -8,7 +8,7 @@ PPU = {
 	SRC_BACK: 5,
 	
 	// Memory declarations
-	vram: []//new int[64*1024], // Video RAM
+	vram: [],//new int[64*1024], // Video RAM
 	bg: [],
 	
 	screenBlank: false,
@@ -27,21 +27,21 @@ PPU = {
 	window1Color: new Color(0, 255, 0),
 	window2Color: new Color(255, 0, 255),
 	
-	unprocessedCycles,
-	x,
-	y,
+	unprocessedCycles: null,
+	x: 0,
+	y: 0,
 	
 	// Color value that will be output for the next pixel
-	colorMain,
-	colorSub,
+	colorMain: null,
+	colorSub: null,
 	
 	// Priority of main and subscreen colors
-	priorityMain,
-	prioritySub,
+	priorityMain: null,
+	prioritySub: null,
 	
 	// Source of the colors
-	sourceMain,
-	sourceSub,
+	sourceMain: null,
+	sourceSub: null,
 	
 	// Whether or not to actually render the frames
 	renderFrames: true,
@@ -50,11 +50,11 @@ PPU = {
 	
 	// Mode 7 data
 	m7EXTBG: false,	// Toggle BG2 in Mode 7
-	m7HOffset,
-	m7VOffset,
-	m7Repeat,
-	m7XFlip,
-	m7YFlip,
+	m7HOffset: null,
+	m7VOffset: null,
+	m7Repeat: null,
+	m7XFlip: null,
+	m7YFlip: null,
 
 	canvas: null,
 	currentFrame: null

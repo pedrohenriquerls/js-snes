@@ -4,18 +4,18 @@ Screen = {
 	INSIDE: 2,
 	ALWAYS: 3,
 	
-	window1Enabled,
-	window2Enabled,
-	window1Invert,
-	window2Invert,
-	windowOp,
+	window1Enabled: null,
+	window2Enabled: null,
+	window1Invert: null,
+	window2Invert: null,
+	windowOp: null,
 	
-	addSub, // True: subtract, false: add
-	halfMath,
-	addSubscreen,
-	directColor,
-	clipBlack,
-	preventMath,
+	addSub: null, // True: subtract, false: add
+	halfMath: null,
+	addSubscreen: null,
+	directColor: null,
+	clipBlack: null,
+	preventMath: null,
 	
 	colorEnable: [], 
 	
@@ -51,7 +51,7 @@ Screen.doPixel = function(x) {
 	}
 }
 
-Screen.Screen.addSub = function(colorMain, colorSub, halve) {
+Screen.addSub = function(colorMain, colorSub, halve) {
 	var newColor;
 	if (!Screen.addSub) { // Add
 		if (!halve) {

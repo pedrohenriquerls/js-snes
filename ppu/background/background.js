@@ -46,8 +46,8 @@ function Background(number, mainCTX){
 	this.xTilePos=0;
 	this.yTilePos=0;
 	this.pixelY = 0;
-	this.cacheTilemap = [64][64];
-	this.cacheChardata = [4096][16][16];// 1024 "tiles", this.size 16x16max
+	this.cacheTilemap = new Matrix(64, 64);
+	this.cacheChardata = new Matrix(4096, 16, 16);// 1024 "tiles", this.size 16x16max
 	
 	// Priority values
 	this.priority0;
@@ -382,9 +382,9 @@ Background.prototype = {
 				
 				
 				var r, g, b, realColor;
-				r = ((var) SNESColor.getColor(c, SNESColor.RED) & 0x1F) << 19;
-				g = ((var) SNESColor.getColor(c, SNESColor.GREEN) & 0x1F) << 11;
-				b = ((var) SNESColor.getColor(c, SNESColor.BLUE) & 0x1F) << 3;
+				r = parseInt(SNESColor.getColor(c, SNESColor.RED) & 0x1F) << 19;
+				g = parseInt(SNESColor.getColor(c, SNESColor.GREEN) & 0x1F) << 11;
+				b = parseInt(SNESColor.getColor(c, SNESColor.BLUE) & 0x1F) << 3;
 				//realColor = (0xFF << 24) | r | g | b;
 
 				this.paintPixels(r, g, b, imgData, this.x, this.y)
@@ -430,8 +430,8 @@ Background.prototype = {
 		for (var k = 0; k < 64; k++) {
 			for (var m = 0; m < 16; m++) {
 				var spriteNum = (k * 16) + m;
-				for (var this.y = 0; this.y < 8; this.y++) {
-					for (var this.x = 0; this.x < 8; this.x++) {
+				for (var y = 0; this.y < 8; y++) {
+					for (var x = 0; this.x < 8; x++) {
 						var addr = this.baseAddress + (spriteNum * 8 * this.colorMode.bitDepth) + (this.y * 2);
 						var xMask = 0x80 >> this.x;
 						var index = 0;
@@ -544,7 +544,7 @@ Background.prototype = {
 		largeAddr += (this.tileHeight);
 		
 		// Re-render the entire this.tile
-		for(var this.pixelY=0; this.pixelY<this.tileHeight; this.pixelY++) {
+		for(var pixelY=0; this.pixelY<this.tileHeight; pixelY++) {
 			if (this.pixelY==8)
 				characterBaseAddress += 16*8*this.colorMode.bitDepth;
 			for (var pixelX=0; pixelX<this.tileWidth; pixelX++) {

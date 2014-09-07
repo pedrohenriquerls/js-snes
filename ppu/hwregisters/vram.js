@@ -1,5 +1,5 @@
 VRAM = {
-	vramAddress,
+	vramAddress: 0,
 	incMode: false,
 	incVal: 1,
 	mapMode: 0,

@@ -16,9 +16,8 @@ OAMRegisters.OAMSize.onWrite = function(value) {
 	 */
 OAMRegisters.OAMAddrLow = new HWRegister()
 OAMRegisters.OAMAddrLow.onWrite = function(value) {
-			this.val = value & 0xFF;
-		}
-	};
+	this.val = value & 0xFF;
+}
 	
 	/**
 	 * 0x2103 - OAM Address high byte
@@ -46,7 +45,7 @@ OAMRegisters.OAMWrite.onWrite = function(value) {
 	 * 0x2138 - OAM Data Read
 	 */
 OAMRegisters.OAMRead = new HWRegister()
-OAMRegisters.OAMRead.onRead() {
+OAMRegisters.OAMRead.onRead = function() {
 	this.val = OAM.readOAM();
 	return this.val
 }

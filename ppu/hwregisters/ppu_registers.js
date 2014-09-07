@@ -4,17 +4,16 @@ PPURegisters = {}
 	 */
 PPURegisters.screenDisplay = new HWRegister()
 PPURegisters.screenDisplay.onWrite = function(value) {
-			var oldval = val;
-			super.onWrite(value);
-			PPU.blankScreen((val & 0x80) == 0x80);
-			PPU.setBrightness(val & 0x0F);
-			
-			//TODO: This is wrong, check anomie's doc
-			// The internal OAM address is reset on a change from 1->0 of bit 7
-			if ((oldval & 0x80)==0x80 && (val & 0x80)==0x00)
-				OAM.resetOAMAddress();
-		}
-	};
+	var oldval = val;
+	this.val = value
+	PPU.blankScreen((val & 0x80) == 0x80);
+	PPU.setBrightness(val & 0x0F);
+	
+	//TODO: This is wrong, check anomie's doc
+	// The internal OAM address is reset on a change from 1->0 of bit 7
+	if ((oldval & 0x80)==0x80 && (this.val & 0x80)==0x00)
+		OAM.resetOAMAddress();
+}
 	
 	/**
 	 * 0x212C - Main screen designation(enables/disables backgrounds/sprites)

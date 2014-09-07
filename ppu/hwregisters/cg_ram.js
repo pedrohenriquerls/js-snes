@@ -7,7 +7,7 @@ CGRAM = {
 	// Caches CGRAM.colors; First index is brightness, second is SNES color
 	cachedColors: new Matrix(16, 0x8000),
 	
-	lowByte: true;
+	lowByte: true
 }
 	
 CGRAM.snesColorToARGB = function(snesColor, brightness) {
@@ -16,9 +16,9 @@ CGRAM.snesColorToARGB = function(snesColor, brightness) {
 		// Convert the SNES-format color (vareger in the form bbbbbgggggrrrrr, b = blue bits, g = green bits,
 		// r = red bits) to an ARGB format color
 		var r, g, b, a;
-		r = (parseInt(SNESColor.getColor(snesColor, SNESColor.RED) * (brightness / 15f)) & 0x1F) << 19;
-		g = (parseInt(SNESColor.getColor(snesColor, SNESColor.GREEN) * (brightness / 15f)) & 0x1F) << 11;
-		b = (parseInt(SNESColor.getColor(snesColor, SNESColor.BLUE) * (brightness / 15f)) & 0x1F) << 3;
+		r = (parseInt(SNESColor.getColor(snesColor, SNESColor.RED) 	 * (brightness / 15.0)) & 0x1F) << 19;
+		g = (parseInt(SNESColor.getColor(snesColor, SNESColor.GREEN) * (brightness / 15.0)) & 0x1F) << 11;
+		b = (parseInt(SNESColor.getColor(snesColor, SNESColor.BLUE)  * (brightness / 15.0)) & 0x1F) << 3;
 		
 		argbColor = (0xFF << 24) | r | g | b;
 		a = (argbColor>>24)&0xFF;

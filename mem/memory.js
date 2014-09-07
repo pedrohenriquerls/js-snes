@@ -141,10 +141,11 @@ function Memory(){
 	this.mmap[0x2120 - 0x2000] = BGRegisters.m7y;
 	
 	// Audio IO Ports
-	this.mmap[0x2140 - 0x2000] = APURegisters.apuio0;
+	//TODO: find way to make this.
+	/*this.mmap[0x2140 - 0x2000] = APURegisters.apuio0;
 	this.mmap[0x2141 - 0x2000] = APURegisters.apuio1;
 	this.mmap[0x2142 - 0x2000] = APURegisters.apuio2;
-	this.mmap[0x2143 - 0x2000] = APURegisters.apuio3;
+	this.mmap[0x2143 - 0x2000] = APURegisters.apuio3;*/
 	
 	// Joypad
 	this.mmap[0x4016 - 0x2000] = CPURegisters.joyser0;

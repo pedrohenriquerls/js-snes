@@ -1,13 +1,13 @@
 function Sprite(){
-	this.this.x;
-	this.this.y;
-	this.this.tileNumber;
-	this.this.vflip;
-	this.this.hflip;
-	this.this.priority;
-	this.this.paletteNum;
-	this.this.name;
-	this.this.sizeToggle;
+	this.x;
+	this.y;
+	this.tileNumber;
+	this.vflip;
+	this.hflip;
+	this.priority;
+	this.paletteNum;
+	this.name;
+	this.sizeToggle;
 }
 
 Sprite.prototype = {

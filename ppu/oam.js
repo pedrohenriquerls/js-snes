@@ -1,15 +1,15 @@
 OAM = {
-	oam: [],//new var[544]; // 544 bytes for the OAM
-	spriteTable: []// new Sprite[128];
+	oam: new Array(544),//new var[544]; // 544 bytes for the OAM
+	spriteTable: new Array(128),// new Sprite[128];
 	
-	lastWriteAddress,
-	varernalOAMAddress,
-	lastPriority,
-	priority,
+	lastWriteAddress: null,
+	varernalOAMAddress: null,
+	lastPriority: false,
+	priority: false,
 	
-	objectSize,
-	nameSelect,
-	nameBaseSelect,
+	objectSize: null,
+	nameSelect: null,
+	nameBaseSelect: null,
 	
 	userEnabled: true,
 	
@@ -20,32 +20,32 @@ OAM = {
 	window2Enabled: false,
 	window1Invert: false,
 	window2Invert: false,
-	windowOp,
+	windowOp: null,
 	
 	// Main/sub screen drawing enables
-	mainScreen,
-	subScreen,
+	mainScreen: false,
+	subScreen: false,
 	
 	// Stores the 4 possible priorities for sprites
-	priorityMap: [],//new var[4],
+	priorityMap: new Array(4),//new var[4],
 	
 	// curSprites stores all 32 of the currently loaded sprites
-	curSprites: [],//new Sprite[32],
-	numSprites,
+	curSprites: new Array(32),//new Sprite[32],
+	numSprites: null,
 	
 	// curTiles stores the 34 possible tiles being drawn
-	curTiles: [],//new SpriteTile[34],
-	numTiles
+	curTiles: new Array(34),//new SpriteTile[34],
+	numTiles: null
 }
 
 for (var i=0;i<128;i++) {
-	OAM.OAM.spriteTable[i] = new Sprite();	
+	OAM.spriteTable[i] = new Sprite();	
 }
 for (var k = 0; k < 32; k++) {
-	OAM.OAM.curSprites[k] = new Sprite();
+	OAM.curSprites[k] = new Sprite();
 }
 for (var k = 0; k < 34; k++) {
-	OAM.OAM.curTiles[k] = new SpriteTile();
+	OAM.curTiles[k] = new SpriteTile();
 }
 	
 	/**
@@ -120,8 +120,8 @@ OAM.scanline = function(y) {
 	}
 	
 	OAM.numTiles = 0;
-	SpriteTile curTile = OAM.curTiles[0];
-	Sprite curSprite;
+	var curTile = OAM.curTiles[0];
+	var curSprite = null;
 	
 	// Loop through the sprites in reverse and load up to 34 tiles
 	loadTiles:

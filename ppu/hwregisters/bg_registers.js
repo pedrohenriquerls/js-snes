@@ -104,7 +104,7 @@ BGRegisters.bg3sc.onWrite = function(value) {
 	 * 0x210A - BG4 Tilemap address and size
 	 */
 BGRegisters.bg4sc = new HWRegister()
-BGRegisters.bg4sc.onWrite(var value) {
+BGRegisters.bg4sc.onWrite = function(value) {
 	PPU.bg[3].tileMapAddress = ((value >> 2) & 0x3F) << 11;
 	PPU.bg[3].size = BGSize.toBGSize(value & 3);
 	PPU.bg[3].invalidateTileCache();
@@ -114,7 +114,7 @@ BGRegisters.bg4sc.onWrite(var value) {
 	 * 0x210B - Background 1/2 Character Address
 	 */
 BGRegisters.bg12nba = new HWRegister()
-BGRegisters.bg12nba.onWrite(var value) {
+BGRegisters.bg12nba.onWrite = function(value) {
 	PPU.bg[0].baseAddress = (value & 0x07) << 13;
 	PPU.bg[1].baseAddress = (value & 0x70) << 9;
 	PPU.bg[0].invalidateCharCache();
@@ -125,7 +125,7 @@ BGRegisters.bg12nba.onWrite(var value) {
 	 * 0x210C - Background 3/4 Character Address
 	 */
 BGRegisters.bg34nba = new HWRegister()
-BGRegisters.bg34nba.onWrite(value) {
+BGRegisters.bg34nba.onWrite = function(value) {
 	PPU.bg[2].baseAddress = (value & 0x07) << 13;
 	PPU.bg[3].baseAddress = (value & 0x70) << 9; 
 	PPU.bg[2].invalidateCharCache();
@@ -139,7 +139,7 @@ BGRegisters.m7Prev;
 	 * 0x211A - Mode 7 Settings
 	 */
 BGRegisters.m7sel = new HWRegister()
-BGRegisters.m7sel.onWrite(value) {
+BGRegisters.m7sel.onWrite = function(value) {
 	PPU.m7Repeat = ((value >> 6) & 0x3);
 	PPU.m7YFlip = (value & 0x02) != 0;
 	PPU.m7XFlip = (value & 0x01) != 0;
