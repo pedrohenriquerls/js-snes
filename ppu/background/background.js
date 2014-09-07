@@ -387,11 +387,11 @@ Background.prototype = {
 				b = ((var) SNESColor.getColor(c, SNESColor.BLUE) & 0x1F) << 3;
 				//realColor = (0xFF << 24) | r | g | b;
 
-				this.paintPixels(r,g,b,imgData, this.x, this.y)
+				this.paintPixels(r, g, b, imgData, this.x, this.y)
 			}
 		}
 
-		this.mainctx.putImageData(imgData,0,0)
+		this.mainctx.putImageData(imgData, 0, 0)
 		
 		/*try {
 			ImageIO.write(img, "PNG", new File(baseDir + "/bg" + this.num + "_img.png"));
