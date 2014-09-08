@@ -116,6 +116,54 @@ StatusRegister.prototype = {
 	isIrqDisable: function() {
 		return this.irq_disable;
 	},
+
+	isCarry: function() {
+		return this.carry;
+	},
+
+	setCarry: function(carry) {
+		this.carry = carry;
+	},
+
+	setNegative: function(negative) {
+		this.negative = negative;
+	},
+
+	isNegative: function() {
+		return this.negative;
+	},
+
+	setOverflow: function(overflow) {
+		this.overflow = overflow;
+	},
+
+	isOverflow: function() {
+		return this.overflow;
+	},
+
+	isMemoryAccess: function(){
+		return this.memory_access;
+	},
+
+	setZero: function(zero) {
+		this.zero = zero;
+	},
+
+	isZero: function() {
+		return this.zero;
+	},
+
+	setCarry: function(carry) {
+		this.carry = carry;
+	},
+
+	isCarry: function() {
+		return this.carry;
+	},
+
+	isIndexRegister: function(){
+		return this.index_register
+	},
 	
 	toString: function() {
 		/*StringBuffer sb = new StringBuffer();

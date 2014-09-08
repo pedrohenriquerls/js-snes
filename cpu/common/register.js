@@ -1,4 +1,3 @@
-
 function Register(size, val) {
 	this.val = val
 	this.size = size;
@@ -40,6 +39,10 @@ Register.prototype = {
 	
 	setSize: function(size) {
 		this.size = size.getRealSize();
+	},
+
+	getSize: function(){
+		return this.size
 	},
 	
 	add: function(add) {

@@ -37,7 +37,7 @@ function _shiftLeftDP() {
   this.mnemonic = 'ASL'
 }
 _shiftLeftDP.prototype.run = function(args){
-  CPU.loadDataRegister(addrMode, size.getRealSize(), args);
+  CPU.loadDataRegister(this.addrMode, this.size.getRealSize(), args);
 	// Check the top bit to set the carry flag
 	var newCarry = CPU.dataReg.isNegative();
 	CPU.dataReg.setValue(CPU.dataReg.getValue() << 1);
@@ -67,7 +67,7 @@ function _shiftLeftAbsolute() {
   this.mnemonic = 'ASL'
 }
 _shiftLeftAbsolute.prototype.run = function(args){
-  CPU.loadDataRegister(addrMode, size.getRealSize(), args);
+  CPU.loadDataRegister(this.addrMode, this.size.getRealSize(), args);
 	// Check the top bit to set the carry flag
 	var newCarry = CPU.dataReg.isNegative();
 	CPU.dataReg.setValue(CPU.dataReg.getValue() << 1);
@@ -95,7 +95,7 @@ function _shiftLeftAbsoluteX() {
   this.mnemonic = 'ASL'
 }
 _shiftLeftAbsoluteX.prototype.run = function(args){
-  CPU.loadDataRegister(addrMode, size.getRealSize(), args);
+  CPU.loadDataRegister(this.addrMode, this.size.getRealSize(), args);
 	// Check the top bit to set the carry flag
 	var newCarry = CPU.dataReg.isNegative();
 	CPU.dataReg.setValue(CPU.dataReg.getValue() << 1);
@@ -122,7 +122,7 @@ function _shiftLeftDPX() {
   this.mnemonic = 'ASL'
 }
 _shiftLeftDPX.prototype.run = function(args){
-  CPU.loadDataRegister(addrMode, size.getRealSize(), args);
+  CPU.loadDataRegister(this.addrMode, this.size.getRealSize(), args);
 	// Check the top bit to set the carry flag
 	var newCarry = CPU.dataReg.isNegative();
 	CPU.dataReg.setValue(CPU.dataReg.getValue() << 1);
@@ -176,7 +176,7 @@ function _shiftRightAbsolute() {
   this.mnemonic = 'LSR'
 }
 _shiftRightAbsolute.prototype.run = function(args){
-  CPU.loadDataRegister(addrMode, size.getRealSize(), args);
+  CPU.loadDataRegister(this.addrMode, this.size.getRealSize(), args);
 	// Check top bit
 	var newCarry = (CPU.dataReg.getValue() & 0x1) != 0;
 	CPU.dataReg.setValue(CPU.dataReg.getValue() >> 1);
@@ -204,7 +204,7 @@ function _shiftRightDP() {
   this.mnemonic = 'LSR'
 }
 _shiftRightDP.prototype.run = function(args){
-  CPU.loadDataRegister(addrMode, size.getRealSize(), args);
+  CPU.loadDataRegister(this.addrMode, this.size.getRealSize(), args);
 	// Check top bit
 	var newCarry = (CPU.dataReg.getValue() & 0x1) != 0;
 	CPU.dataReg.setValue(CPU.dataReg.getValue() >> 1);
@@ -234,7 +234,7 @@ function _shiftRightAbsoluteX() {
   this.mnemonic = 'LSR'
 }
 _shiftRightAbsoluteX.prototype.run = function(args){
-  CPU.loadDataRegister(addrMode, size.getRealSize(), args);
+  CPU.loadDataRegister(this.addrMode, this.size.getRealSize(), args);
 	// Check top bit
 	var newCarry = (CPU.dataReg.getValue() & 0x1) != 0;
 	CPU.dataReg.setValue(CPU.dataReg.getValue() >> 1);
@@ -262,7 +262,7 @@ function _shiftRightDPX() {
   this.mnemonic = 'LSR'
 }
 _shiftRightDPX.prototype.run = function(args){
-  CPU.loadDataRegister(addrMode, size.getRealSize(), args);
+  CPU.loadDataRegister(this.addrMode, this.size.getRealSize(), args);
 	// Check top bit
 	var newCarry = (CPU.dataReg.getValue() & 0x1) != 0;
 	CPU.dataReg.setValue(CPU.dataReg.getValue() >> 1);

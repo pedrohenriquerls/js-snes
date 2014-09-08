@@ -18,8 +18,13 @@ RomLoader.prototype = {
       var arrayBuffer = oReq.response;
 
       if (arrayBuffer) {
-        me.romData = new Uint8Array(arrayBuffer);
-        me.ready = true;
+        var romData = new Uint8Array(arrayBuffer);
+
+        if (romData.length % 1024 != 0) {
+					romData = romData.subarray(0x200, romData.length);
+					console.log("Removing File Header");
+				}
+				me.romData = romData
 
         //if (me.getRomInfo().isHiROM())
 			    //Core.mem = new HiROMMemory();
@@ -28,6 +33,7 @@ RomLoader.prototype = {
 			  
 			  me.loadMemory(Core.mem);
         
+        me.ready = true;
         callback()
       }
     };

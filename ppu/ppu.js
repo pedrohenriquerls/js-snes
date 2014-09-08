@@ -62,12 +62,12 @@ PPU = {
 
 PPU.setCurrentFrame = function(x, y, r, g, b, a){
 	var imgData = PPU.getMainCTX().createImageData(256, 240);
-	var index = (x + y * imageData.width) * 4;
+	var index = (x + y * imgData.width) * 4;
 	
-	imageData.data[index+0] = r;
-  imageData.data[index+1] = g;
-  imageData.data[index+2] = b;
-  imageData.data[index+3] = b;
+	imgData.data[index+0] = r;
+  imgData.data[index+1] = g;
+  imgData.data[index+2] = b;
+  imgData.data[index+3] = b;
 
   PPU.currentFrame = imgData
 }

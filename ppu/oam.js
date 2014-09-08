@@ -113,7 +113,7 @@ OAM.scanline = function(y) {
 	OAM.numSprites = 0;
 	for (var k = 0; k < 127; k++) {
 		OAM.curSprites[OAM.numSprites].loadSprite((firstSprite + k) % 128);
-		if (onScanline(OAM.curSprites[OAM.numSprites], y)) {
+		if (OAM.onScanline(OAM.curSprites[OAM.numSprites], y)) {
 			OAM.numSprites++;
 			if (OAM.numSprites >= 32) break; // TODO: Mark register 0x213E if >32 sprites on line
 		}
@@ -142,7 +142,7 @@ OAM.scanline = function(y) {
 		for (var m = 0; m < OAM.curSprites[k].getWidth(); m += 8) {
 			// Load tile data
 			curTile.x = curSprite.x + m;
-			curTile.OAM.priority = OAM.priorityMap[curSprite.OAM.priority];
+			curTile.priority = OAM.priorityMap[curSprite.priority];
 			curTile.paletteOffset = 128 + (curSprite.paletteNum << 4);
 			curTile.vflip = curSprite.vflip;
 			

@@ -10,7 +10,7 @@ function _orAMemDPIndirectX() {
   this.addrMode = AddressingMode.DIRECT_PAGE_INDEXED_INDIRECT_X;
   this.mnemonic = 'ORA'
 }
-_softwareBreak.prototype.run = function(args){
+_orAMemDPIndirectX.prototype.run = function(args){
   CPU.loadDataRegister(this.addrMode, this.size.getRealSize(), args);
 	CPU.a.setValue(CPU.a.getValue() | CPU.dataReg.getValue());
 	

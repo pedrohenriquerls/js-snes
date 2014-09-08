@@ -29,16 +29,19 @@ function Snes(url, canvas, maxInstructions){
 Snes.prototype = {
   cycle: function(count){
     var instCount = 0;
+    Core.running = true
     
     // Do as many instructions as set in properties file
     // Will execute indefinitely if instruction count is negative
-    try {
+    //try {
       while ((instCount < count || count < 0) && Core.running) {
-        if (pause && !advanceFrameOnce) continue;
+        if (this.pause && !this.advanceFrameOnce) 
+          continue;
+
         CPU.cycle();
         instCount++;
       }
-    } catch (err) {
+    /*} catch (err) {
       // Finish timing and print stats before throwing error up
       this.timeEnd = Date();
       console.log("Total time: " + ((this.timeEnd - this.timeBegin) / 1000) + " seconds");
@@ -49,7 +52,7 @@ Snes.prototype = {
       this.printMMaps();
       
       console.log(err)
-    }
+    }*/
     
     this.instCount += instCount;
   },
@@ -82,7 +85,7 @@ Snes.prototype = {
     this.timeBegin = Date();
     this.cycle(this.maxInstructions);
     this.timeEnd = Date();
-    Core.running = true;
+    Core.running = false;
     
     // Print run stats
     console.log("Total time: " + ((this.timeEnd - this.timeBegin) / 1000) + " seconds");

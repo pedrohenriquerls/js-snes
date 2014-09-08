@@ -501,13 +501,14 @@ CPU.cycle = function() {
 	}
 	
 	// Log current instruction
-	if (Log.instruction.enabled()) 
-		CPU.logInstruction(opcode, args, bank, addr);	
+	//if (Log.instruction.enabled()) 
+		//CPU.logInstruction(opcode, args, bank, addr);	
 
-	if(tracingEnabled)
+	if(CPU.tracingEnabled)
 		CPUState.saveState(opcode, args);
 	
 	// Perform the instruction (finally)
+	console.log(inst)
 	Timing.cycle(inst.run(args)*6);
 }
 
@@ -666,7 +667,7 @@ CPU.loadDataRegister = function(mode, size, args) {
 			// Don't bother loading
 			return;
 
-		case AddressingMode.AddressingMode.PROGRAM_COUNTER_RELATIVE_LONG:
+		case AddressingMode.PROGRAM_COUNTER_RELATIVE_LONG:
 			CPU.dataReg.setValue(Size.SHORT, (args[1] << 8) + args[0]);
 			// Don't bother loading
 			return;
@@ -707,14 +708,14 @@ CPU.loadDataRegister = function(mode, size, args) {
 	}
 	
 	// Load from memory
-	CPU.dataReg.setValue(size, Core.mem.read(size, dataBank, dataAddr));
+	CPU.dataReg.setValue(size, Core.mem.read(CPU.size, CPU.dataBank, CPU.dataAddr));
 }
 
 /**
  * Saves the contents of the data register back into memory where it was loaded from
  */
 CPU.saveDataReg = function() {
-	Core.mem.write(dataReg.getSize(), CPU.dataBank, CPU.dataAddr, CPU.dataReg.getValue());
+	Core.mem.write(CPU.dataReg.getSize(), CPU.dataBank, CPU.dataAddr, CPU.dataReg.getValue());
 }
 
 /**

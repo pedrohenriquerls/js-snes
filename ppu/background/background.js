@@ -32,8 +32,8 @@ function Background(number, mainCTX){
 	this.windowOp;
 	
 	// this.x/this.y position of the pixel we're currently drawing
-	this.x;
-	this.y;
+	this.x = 0;
+	this.y = 0;
 	this.baseY;
 	
 	this.tile;		// Stores the content of the current this.tile entry
@@ -82,9 +82,9 @@ Background.prototype = {
 	 */
 	getPaletteOffset: function() {
 		switch(this.colorMode) {
-			case Color4:
+			case ColorMode.Color4:
 				return ((this.tile >> 10) & 0x7) * 4;
-			case Color16:
+			case ColorMode.Color16:
 				return ((this.tile >> 10) & 0x7) * 16;
 			default:
 				return ((this.tile >> 10) & 0x7);
@@ -161,7 +161,7 @@ Background.prototype = {
 		}
 		
 		
-		this.this.tilePaletteOffset = this.getPaletteOffset();
+		this.tilePaletteOffset = this.getPaletteOffset();
 		
 		// Tiles can choose between one of two priorities
 		this.curPriority = (((this.tile >> 13) & 1) != 0 ? this.priority1 : this.priority0);
@@ -190,7 +190,7 @@ Background.prototype = {
 		}
 		
 		// Don't output transparent or when we're disabled
-		if (index != 0 && this.enabled()) {
+		if (index != 0 && this.isEnabled()) {
 			// Masking check
 			var masked = Window.checkBackgroundMask(this);
 			var mainMask = this.windowMaskMain && masked;
@@ -292,7 +292,7 @@ Background.prototype = {
 		}
 		
 		// Don't output transparent or when we're disabled
-		if (palette != 0 && this.enabled()) {
+		if (palette != 0 && this.isEnabled()) {
 			// Masking check
 			var masked = Window.checkBackgroundMask(this);
 			var mainMask = this.windowMaskMain && masked;
@@ -351,7 +351,7 @@ Background.prototype = {
 		return this.vscroll & 0x03FF % (this.size.height*this.tileHeight);// only 10 bits count
 	},
 	
-	enabled: function() {
+	isEnabled: function() {
 		return this.enabled && this.userEnabled;
 	},
 
@@ -585,7 +585,7 @@ Background.prototype = {
 
 	// Invalidate the caches
 	invalidateCharCache: function() {
-		if (!this.enabled()) return;
+		if (!this.isEnabled()) return;
 		console.log("Rebuilding character cache");
 		for (var i=0;i<4096;i++)
 			for(var j=0;j<16;j++)
@@ -594,7 +594,7 @@ Background.prototype = {
 	},
 
 	invalidateTileCache: function() {
-		if (!this.enabled()) return;
+		if (!this.isEnabled()) return;
 		console.log("Rebuilding this.tile cache");
 		for (var i=0;i<64;i++)
 			for(var j=0;j<64;j++)

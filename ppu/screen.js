@@ -28,8 +28,8 @@ Screen.doPixel = function(x) {
 	var mainColor = CGRAM.getColor(PPU.colorMain);
 	var subColor = (PPU.prioritySub == 0 ? CGRAM.fixedColor : CGRAM.getColor(PPU.colorSub));
 	
-	var clipMain = checkWindowEffect(Screen.clipBlack);
-	var preventSubMath = checkWindowEffect(Screen.preventMath);
+	var clipMain = Screen.checkWindowEffect(Screen.clipBlack);
+	var preventSubMath = Screen.checkWindowEffect(Screen.preventMath);
 	
 	if (clipMain) {
 		if (preventSubMath) {
@@ -76,13 +76,13 @@ Screen.addSub = function(colorMain, colorSub, halve) {
 
 Screen.checkWindowEffect = function(status) {
 	switch (status) {
-		case this.NEVER:
+		case Screen.NEVER:
 			return false;
-		case this.OUTSIDE:
+		case Screen.OUTSIDE:
 			return !Screen.inColorWindow;
-		case this.INSIDE: 
+		case Screen.INSIDE: 
 			return Screen.inColorWindow;
-		case this.ALWAYS:
+		case Screen.ALWAYS:
 			return true;
 		default:
 			return false;

@@ -11,7 +11,7 @@ _addressingMode.prototype = {
 			return (CPU.status.isIndexRegister() ? 1 : 2);
 		}
 		
-		return numArgs;
+		return this.numArgs;
 	}
 }
 
