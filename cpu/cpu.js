@@ -508,7 +508,7 @@ CPU.cycle = function() {
 		CPUState.saveState(opcode, args);
 	
 	// Perform the instruction (finally)
-	console.log(inst)
+	//console.log(inst)
 	Timing.cycle(inst.run(args)*6);
 }
 
