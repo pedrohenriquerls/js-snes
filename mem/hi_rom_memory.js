@@ -25,10 +25,10 @@ HiROMMemory.prototype.get = function(size, bank, addr){
 		} else if (addr >=0x2000 && addr < 0x6000) { // Hardware registers
 			return this.readHWReg(size, addr);
 		} else if (addr >= 0x8000) { // ROM Chunks
-			return this.getFromArray(size, rom, 0x8000+ (bank*0x10000) + (addr-0x8000));
+			return this.getFromArray(size, this.rom, 0x8000+ (bank*0x10000) + (addr-0x8000));
 		}
 	} else if (Util.inRange(bank, 0x40, 0x7D)) {	// ROM chunks
-		return this.getFromArray(size, rom, 0x8000+((bank - 0x40)*0x10000) + addr);
+		return this.getFromArray(size, this.rom, 0x8000+((bank - 0x40)*0x10000) + addr);
 	} else if (bank == 0x7E) {	// WRAM, System RAM 1
 		return this.getFromArray(size, wram, addr);
 	} else if (bank == 0x7F) {	// Moar wram
@@ -44,10 +44,10 @@ HiROMMemory.prototype.get = function(size, bank, addr){
 		} else if (addr >=0x2000 && addr < 0x6000) { // Hardware registers
 			return this.readHWReg(size, addr);
 		} else if (addr >= 0x8000) { // ROM Chunks
-			return this.getFromArray(size, rom, 0x8000+ ((bank - 0x80) * 0x10000) + (addr-0x8000));
+			return this.getFromArray(size, this.rom, 0x8000+ ((bank - 0x80) * 0x10000) + (addr-0x8000));
 		}
 	} else if (Util.inRange(bank, 0xC0, 0xFF)) {
-		return this.getFromArray(size, rom, ((bank - 0xC0) * 0x10000) + addr);
+		return this.getFromArray(size, this.rom, ((bank - 0xC0) * 0x10000) + addr);
 	}
 	
 	//if (Settings.get(Settings.MEM_THROW_INVALID_ADDR).equals("true"))

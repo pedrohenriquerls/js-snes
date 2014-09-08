@@ -84,10 +84,10 @@ PPU.initialize = function(canvas){
 
 	//PPU.screenBuffer = PPU.getMainCTX().createImageData(256, 240);
 
-	PPU.bg[0] = new Background(1, mainCTX);
-	PPU.bg[1] = new Background(2, mainCTX);
-	PPU.bg[2] = new Background(3, mainCTX);
-	PPU.bg[3] = new Background(4, mainCTX);	
+	PPU.bg[0] = new Background(1, PPU.getMainCTX());
+	PPU.bg[1] = new Background(2, PPU.getMainCTX());
+	PPU.bg[2] = new Background(3, PPU.getMainCTX());
+	PPU.bg[3] = new Background(4, PPU.getMainCTX());	
 }
 
 //TODO: Implement frameskip
@@ -336,21 +336,15 @@ PPU.scanline = function() {
 }
 
 PPU.dumpVRAM = function() {
-	//TODO: dumpVram port
-	/*if (Settings.get(Settings.DEBUG_DIR) != null) {
-		try {
-			String fname = Settings.get(Settings.DEBUG_DIR) + "/PPU.vram.bin";
-			FileOutputStream fos = new FileOutputStream(fname);
-			for(int i=0; i<PPU.vram.length; i++)
-				fos.write(PPU.vram[i]);
-			fos.close();
-		} catch (e) {
-			conosle.log("Unable to dump PPU.vram");
-			console.log(e)
-		}
-	}*/
-	conosle.log(PPU.bg[0].toString());
-	conosle.log(PPU.bg[1].toString());
-	conosle.log(PPU.bg[2].toString());
-	conosle.log(PPU.bg[3].toString());
+	try{
+		for(var i=0; i<PPU.vram.length; i++)
+			console.log(PPU.vram[i]);
+	} catch (e) {
+		conosle.log("Unable to dump PPU.vram");
+		console.log(e)
+	}
+	console.log(PPU.bg[0].toString());
+	console.log(PPU.bg[1].toString());
+	console.log(PPU.bg[2].toString());
+	console.log(PPU.bg[3].toString());
 }

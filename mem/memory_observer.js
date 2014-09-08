@@ -23,5 +23,5 @@ MemoryObserver.notifyObservers = function(address){
 				break; // Move on to the next observer
 			}
 		}
-	}
+	})
 }

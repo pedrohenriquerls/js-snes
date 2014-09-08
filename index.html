@@ -16,6 +16,8 @@
   <script type="text/javascript" src="cpu/common/size.js"></script>
   <script type="text/javascript" src="cpu/common/util.js"></script>
 
+  <script type="text/javascript" src="mem/memory_observer.js"></script>  
+
   <script type="text/javascript" src="ppu/background/bg_size.js"></script>  
   <script type="text/javascript" src="ppu/background/color.js"></script>  
   <script type="text/javascript" src="ppu/background/background.js"></script>  
@@ -83,67 +85,16 @@
   <script type="text/javascript" src="cpu/timing.js"></script>
   <script type="text/javascript" src="cpu/cpu.js"></script>
 
+  <script type="text/javascript" src="roms/rom_loader.js"></script>
 
   <script type="text/javascript" src="snes.js"></script>
-  <script type="text/javascript">
-    
-  </script>
   </head>
   <body>
+    <canvas id="canvas" oncontextmenu="event.preventDefault()" style="width: 256px; height: 224px; border: 1px solid black"></canvas>
 
-</script>
-<style>
-.row {
-  width:100%;
-  float:left;
-}
-.label {
-  float:left;
-  width:40px;
-}
-.value {
-  float:left;
-}
-.left { 
-  float:left;
-  width:50%;
-}
-.right {
-  float:left;
-  width:50%;
-}
-#hex {
-  height:140px;
-  width:400px;
-}
-</style>
-<body>
-<div class="left">
-<div class="left">
-<h3>Registers</h3>
-<div class="row"><div class="label">a</div><div id="registerA" class="value"></div></div>
-<div class="row"><div class="label">b</div><div id="registerB" class="value"></div></div>
-<div class="row"><div class="label">x</div><div id="registerX" class="value"></div></div>
-<div class="row"><div class="label">y</div><div id="registerY" class="value"></div></div>
-<div class="row"><div class="label">d</div><div id="registerD" class="value"></div></div>
-<div class="row"><div class="label">s</div><div id="registerS" class="value"></div></div>
-<div class="row"><div class="label">pc</div><div id="registerPC" class="value"></div></div>
-<div class="row"><div class="label">dbr</div><div id="registerDBR" class="value"></div></div>
-<div class="row"><div class="label">k</div><div id="registerK" class="value"></div></div>
-</div>
-<div class="right">
-<h3>P Register Flags</h3>
-<div class="row"><div class="label">e</div><div id="registerPFlagE" class="value"></div></div>
-<div class="row"><div class="label">c</div><div id="registerPFlagC" class="value"></div></div>
-<div class="row"><div class="label">z</div><div id="registerPFlagZ" class="value"></div></div>
-<div class="row"><div class="label">i</div><div id="registerPFlagI" class="value"></div></div>
-<div class="row"><div class="label">d</div><div id="registerPFlagD" class="value"></div></div>
-<div class="row"><div class="label">x</div><div id="registerPFlagX" class="value"></div></div>
-<div class="row"><div class="label">m</div><div id="registerPFlagM" class="value"></div></div>
-<div class="row"><div class="label">v</div><div id="registerPFlagV" class="value"></div></div>
-<div class="row"><div class="label">n</div><div id="registerPFlagN" class="value"></div></div>
-</div>
-</div>
-    
+    <script type="text/javascript">
+      var canvas = document.getElementById("canvas")
+      var snes = new Snes("mario.smc", canvas)
+    </script>
   </body>  
 </html>  

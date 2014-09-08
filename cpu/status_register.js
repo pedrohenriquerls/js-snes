@@ -100,6 +100,22 @@ StatusRegister.prototype = {
 			CPU.y.setSize(Size.SHORT);
 		}
 	},
+
+	setDecimalMode: function(decimal_mode){
+		this.decimal_mode = decimal_mode
+	},
+
+	isDecimalMode: function() {
+		return this.decimal_mode;
+	},
+
+	setIrqDisable: function(irq_disable) {
+		this.irq_disable = irq_disable;
+	},
+
+	isIrqDisable: function() {
+		return this.irq_disable;
+	},
 	
 	toString: function() {
 		/*StringBuffer sb = new StringBuffer();

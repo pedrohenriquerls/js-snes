@@ -155,6 +155,8 @@ function Memory(){
 }
 
 Memory.prototype = {
+	get: function(size, bank, addr){return {}},
+	set: function(size, bank, addr, val){console.log('do nothing')},
 	isHiROM: function() {
 		return this.isHiROM;
 	},
@@ -173,7 +175,7 @@ Memory.prototype = {
 		
 		if (fastrom){ // 6 cycles
 			Timing.cycle(6);
-			return get(size,bank,addr);
+			return this.get(size,bank,addr);
 		} else { // 8 cycles
 			Timing.cycle(8);
 			return this.get(size,bank,addr);
