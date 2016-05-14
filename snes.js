@@ -98,6 +98,7 @@ Snes.prototype = {
     PPU.dumpVRAM();
     Core.mem.dumpWRAM();
     this.renderScreen();
+    this.run();
   },
   
   printStats: function() {
