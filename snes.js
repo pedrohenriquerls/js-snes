@@ -16,32 +16,33 @@ function Snes(url, canvas, maxInstructions){
   this.maxInstructions = maxInstructions ? maxInstructions:-1
 
   this.romLoader = new RomLoader(url);
-
-  //TODO: make it better
-  var me = this
-  var callback = function(){
-    console.log("running...")
-    me.run()
-  }
-  this.romLoader.read(callback)
 }
-  
+
 Snes.prototype = {
+  start: function() {
+    var me = this
+    var callback = function(){
+      console.log("running...")
+      me.run()
+    }
+    this.romLoader.read(callback)
+  },
+
   cycle: function(count){
+    debugger
     var instCount = 0;
     Core.running = true
     
     // Do as many instructions as set in properties file
     // Will execute indefinitely if instruction count is negative
-    //try {
-      while ((instCount < count || count < 0) && Core.running) {
-        if (this.pause && !this.advanceFrameOnce) 
-          continue;
-
-        CPU.cycle();
-        instCount++;
+    try {
+      if ((instCount < count || count < 0) && Core.running) {
+        if (!this.pause && this.advanceFrameOnce) {
+          CPU.cycle();
+          instCount++;
+        }
       }
-    /*} catch (err) {
+    } catch (err) {
       // Finish timing and print stats before throwing error up
       this.timeEnd = Date();
       console.log("Total time: " + ((this.timeEnd - this.timeBegin) / 1000) + " seconds");
@@ -50,11 +51,10 @@ Snes.prototype = {
       console.log("Average speed: " + (((Timing.getCycles() + 0.0) / ((this.timeEnd - this.timeBegin + 0.0) / 1000.0)) / (1024.0 * 1024.0)) + " MHz");
       console.log("Average speed: " + (((Timing.getCycles() + 0.0) / ((this.timeEnd - this.timeBegin + 0.0) / 1000.0))) + " Hz");
       this.printMMaps();
-      
       console.log(err)
-    }*/
-    
+    }
     this.instCount += instCount;
+    this.cycle(this.instCount);
   },
   
   run: function(){
@@ -124,7 +124,6 @@ Snes.prototype = {
   renderScreen: function() {
     CGRAM.readColors();
     CGRAM.testColors();
-    //Sprites.dumpOBJ();
+    Sprites.dumpOBJ();
   }
-  
 }
